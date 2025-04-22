@@ -5,9 +5,10 @@ INC			=	includes/
 SRC_DIR		=	sources/
 OBJ_DIR		=	objects/
 
-CC		=	@cc
-CFLAGS	=	-Wall -Werror -Wextra -g
-RM		=	@rm -f
+CC			=	@cc
+CFLAGS		=	-Wall -Werror -Wextra -g
+MLXFLAGS	=	-Iminilibx-linux -lXext -lX11 -lm -lz
+RM			=	@rm -f
 
 CUB_DIR	=	$(SRC_DIR)builtins/main.c \
 
@@ -19,7 +20,7 @@ all:	$(NAME)
 
 $(NAME):	$(OBJS) $(LIBFT)
 		@echo "\033[1;32mMake .o and executable.\033[0m"
-		@$(CC) $(CFLAGS) -I$(INC) $(OBJS) $(LIBFT) -o $(NAME) -lreadline
+		@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) $(MLXFLAGS) -o $(NAME)
 
 $(LIBFT):
 		@make -s -C ./libft

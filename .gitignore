@@ -1,0 +1,11 @@
+.vscode/
+obj/
+*.o
+*.a
+*.swo
+*.swp
+.dist/
+.DS_Store
+mlx
+mlx-linux
+cub3D
