@@ -29,4 +29,6 @@
 #  define ESC					65307
 # endif
 
+# include "structs.h"
+
 #endif
