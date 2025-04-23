@@ -7,5 +7,5 @@ obj/
 .dist/
 .DS_Store
 mlx
-mlx-linux
+mlx_linux
 cub3D
