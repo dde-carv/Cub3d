@@ -7,7 +7,13 @@ OBJ_DIR		=	objects/
 
 CC			=	@cc
 CFLAGS		=	-Wall -Werror -Wextra -g
-MLXFLAGS	=	-Iminilibx-linux -lXext -lX11 -lm -lz
+MLXFLAGS	=	-L ../mlx/ -lmlx -framework OpenGL -framework AppKit -lz
+ifeq ($(shell uname), Linux)
+	MLXFLAGS	=	-L ./mlx_linux/ -lmlx -Imlx -lXext -lX11
+	MLX = mlx_linux/libmlx.a
+	INC = -I. -Iincludes -Imlx_linux
+	M = mlx_linux
+endif
 RM			=	@rm -f
 
 CUB_DIR	=	$(SRC_DIR)builtins/main.c \
