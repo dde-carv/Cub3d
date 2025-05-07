@@ -1,5 +1,10 @@
 #include "cub3d.h"
 
+static void	cub_init(t_main *g)
+{
+
+}
+
 static int	check_argv(char	*argv)
 {
 	int	len;
@@ -15,22 +20,22 @@ static int	check_argv(char	*argv)
 
 int	main(int argc, char **argv)
 {
-	t_main	game;
+	t_main	g;
 
-	ft_bzero(&game, sizeof(t_main));
+	ft_bzero(&g, sizeof(t_main));
 	if (argc == 2)
 	{
-		game.mlx = mlx_init();
-		game.map = map_read(argv[1], &game);
-		game.mapcopy = map_read(argv[1], &game);
-		if (check_argv(argv[1]) && check_map(&game))
+		g.mlx = mlx_init();
+		g.map = map_read(argv[1], &g);
+		g.mapcopy = map_read(argv[1], &g);
+		if (check_argv(argv[1]) && check_map(&g))
 		{
-			init_game(&game);
-			gameplay(&game);
-			mlx_loop(game.mlx);
+			init_game(&g);
+			gameplay(&g);
+			mlx_loop(g.mlx);
 		}
 		else
-			print_error("Invalid map.", &game);
+			print_error("Invalid map.", &g);
 	}
 	else
 		ft_putendl("Bad syntax:\n./cub3D ./maps/<map>.cub.\n");

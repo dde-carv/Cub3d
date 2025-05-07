@@ -1,15 +1,9 @@
 #include "cub3d.h"
 
-/* static void	verify_nl(char *line, char *map_temp, t_main *game)
+//* While parsing this function is used to verify the map
+static void	verify_l()
 {
-	if (line && *line == '\n')
-	{
-		free(line);
-		free(map_temp);
-		print_error("Invalid new line in map.", game);
-	}
-	return ;
-} */
+}
 
 char	**map_read(char *path, t_main *game)
 {
@@ -26,7 +20,7 @@ char	**map_read(char *path, t_main *game)
 	while (1)
 	{
 		line = get_next_line(fd);
-		//verify_nl(line, map_temp, game);
+		verify_l();
 		if (!line)
 			break ;
 		tmp = map_temp;
@@ -35,7 +29,5 @@ char	**map_read(char *path, t_main *game)
 		free(line);
 	}
 	map = ft_split(map_temp, '\n');
-	free(map_temp);
-	close(fd);
-	return (map);
+	return (close(fd), free(map_temp), map);
 }
