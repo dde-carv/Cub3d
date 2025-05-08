@@ -28,6 +28,11 @@ typedef struct s_win
 	int		y_pos;
 }				t_win;
 
+typedef struct s_player
+{
+	
+}				t_player;
+
 typedef struct s_main
 {
 	void	*mlx;
