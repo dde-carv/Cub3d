@@ -30,13 +30,13 @@ typedef struct s_win
 
 typedef struct s_player
 {
-	
+
 }				t_player;
 
-typedef struct s_main
+typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
 	char	**map;
 	char	**mapcopy;
-}			t_main;
+}				t_game;

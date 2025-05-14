@@ -1,10 +1,5 @@
 #include "cub3d.h"
 
-static void	cub_init(t_main *g)
-{
-
-}
-
 static int	check_argv(char	*argv)
 {
 	int	len;
@@ -18,17 +13,30 @@ static int	check_argv(char	*argv)
 	return (0);
 }
 
-int	main(int argc, char **argv)
+static void	check_args(int ac, char **av)
 {
-	t_main	g;
+	
+}
 
-	ft_bzero(&g, sizeof(t_main));
-	if (argc == 2)
+int	main(int ac, char **av)
+{
+	t_game	g;
+
+	check_args(ac, av);
+
+
+
+
+
+
+
+	ft_bzero(&g, sizeof(t_game));
+	if (ac == 2)
 	{
 		g.mlx = mlx_init();
-		g.map = map_read(argv[1], &g);
-		g.mapcopy = map_read(argv[1], &g);
-		if (check_argv(argv[1]) && check_map(&g))
+		g.map = map_read(av[1], &g);
+		g.mapcopy = map_read(av[1], &g);
+		if (check_argv(av[1]) && check_map(&g))
 		{
 			init_game(&g);
 			gameplay(&g);
