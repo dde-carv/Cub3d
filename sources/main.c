@@ -15,6 +15,8 @@ static int	check_argv(char	*argv)
 
 static void	check_args(int ac, char **av)
 {
+	int	i;
+
 	
 }
 
