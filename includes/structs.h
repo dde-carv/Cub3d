@@ -1,5 +1,20 @@
 # include "../libft/inc/libft.h"
 
+typedef enum	e_error_type
+{
+	end,
+	inv_ac,
+	inv_ext,
+	inv_file,
+	empty_file,
+	inv_color,
+	inv_wall,
+	inv_map,
+	inv_char,
+	inv_ply,
+	inv_tex
+}				t_error_type;
+
 typedef struct s_win
 {
 	void	*mlx;
