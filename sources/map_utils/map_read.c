@@ -5,7 +5,7 @@ static void	verify_l()
 {
 }
 
-char	**map_read(char *path, t_main *game)
+char	**map_read(char *path, t_game *g)
 {
 	int		fd;
 	char	*line;

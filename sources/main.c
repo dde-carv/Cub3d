@@ -15,12 +15,18 @@ static int	check_argv(char	*argv)
 
 static void	check_args(int ac, char **av)
 {
-	
+	int	fd;
+
+	cub_perror(inv_ac, NULL, NULL, ac != 2);
+	fd = open(av[1], O_RDONLY);
+	close(fd);
+	cub_perror(inv_file, NULL, av[1], fd < 0);
+	cub_perror(inv_ext, NULL, NULL, check_argv(av[1]));
 }
 
 int	main(int ac, char **av)
 {
-	t_game	g;
+	//t_game	g;
 
 	check_args(ac, av);
 
@@ -30,7 +36,7 @@ int	main(int ac, char **av)
 
 
 
-	ft_bzero(&g, sizeof(t_game));
+/* 	ft_bzero(&g, sizeof(t_game));
 	if (ac == 2)
 	{
 		g.mlx = mlx_init();
@@ -46,6 +52,6 @@ int	main(int ac, char **av)
 			print_error("Invalid map.", &g);
 	}
 	else
-		ft_putendl("Bad syntax:\n./cub3D ./maps/<map>.cub.\n");
+		ft_putendl("Bad syntax:\n./cub3D ./maps/<map>.cub.\n"); */
 	return (0);
 }

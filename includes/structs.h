@@ -1,4 +1,3 @@
-# include "../libft/inc/libft.h"
 
 typedef enum	e_error_type
 {

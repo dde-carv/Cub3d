@@ -29,6 +29,30 @@
 #  define ESC					65307
 # endif
 
+# include "../libft/inc/libft.h"
 # include "structs.h"
+
+/************************* ERROR *************************/
+
+// If there is an error prints the message and exits the program
+int		cub_perror(t_error_type err, t_game *g, char *str, int flag);
+
+// Prints message explaining the usage of the program
+void	cub_usage(int error);
+
+/************************* MEMORY *************************/
+
+// Frees a pointer
+//void	free_pointer(void *str);
+
+// Frees an array
+//void	free_array(void **array);
+
+/************************* INIT *************************/
+
+
+/************************* PARSING *************************/
+
+
 
 #endif

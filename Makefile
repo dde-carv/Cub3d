@@ -1,6 +1,7 @@
 NAME		=	cub3D
 
 LIBFT		=	./libft/libft.a
+MLX			=
 INC			=	includes/
 SRC_DIR		=	sources/
 OBJ_DIR		=	objects/
