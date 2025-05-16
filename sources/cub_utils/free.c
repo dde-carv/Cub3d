@@ -20,3 +20,8 @@ void	free_array(void **array)
 	free(array);
 	array = NULL;
 }
+
+void	clean_cub(t_game *g)
+{
+
+}

@@ -43,16 +43,23 @@ void	cub_usage(int error);
 /************************* MEMORY *************************/
 
 // Frees a pointer
-//void	free_pointer(void *str);
+void	free_pointer(void *str);
 
 // Frees an array
-//void	free_array(void **array);
+void	free_array(void **array);
+
+// Cleans the game struct
+void	clean_cub(t_game *g);
 
 /************************* INIT *************************/
 
+// Initialize the game struct
+t_game	cub_init(void);
 
 /************************* PARSING *************************/
 
+
+/************************* RAYCAST *************************/
 
 
 #endif

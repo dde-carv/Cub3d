@@ -42,9 +42,26 @@ typedef struct s_win
 	int		y_pos;
 }				t_win;
 
-typedef struct s_player
+typedef struct s_key
 {
 
+}				t_key;
+
+typedef struct s_textures
+{
+	int		f_color;
+	int		c_color;
+	void	*no_img;
+	void	*so_img;
+	void	*we_img;
+	void	*ea_img;
+}				t_textures;
+
+typedef struct s_player
+{
+	int		x;
+	int		y;
+	char	dir;
 }				t_player;
 
 typedef struct s_game

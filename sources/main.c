@@ -5,12 +5,12 @@ static int	check_argv(char	*argv)
 	int	len;
 
 	if (!argv)
-		return (0);
+		return (1);
 	len = ft_strlen(argv) - 1;
 	if (argv[len] == 'b' && argv[len - 1] == 'u' && argv[len - 2] == 'c' && \
 		argv[len - 3] == '.')
-		return (1);
-	return (0);
+		return (0);
+	return (1);
 }
 
 static void	check_args(int ac, char **av)
@@ -26,16 +26,16 @@ static void	check_args(int ac, char **av)
 
 int	main(int ac, char **av)
 {
-	//t_game	g;
+	t_game	g;
 
 	check_args(ac, av);
+	g = cub_init();
 
 
 
 
 
-
-
+	
 /* 	ft_bzero(&g, sizeof(t_game));
 	if (ac == 2)
 	{

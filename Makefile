@@ -2,6 +2,7 @@ NAME		=	cub3D
 
 LIBFT		=	./libft/libft.a
 MLX			=	./mlx/libmlx.a
+MLX_CP		=	./mlx
 INC			=	includes/
 SRC_DIR		=	sources/
 OBJ_DIR		=	objects/
@@ -12,6 +13,7 @@ MLXFLAGS	=	-L ./mlx/ -lmlx -framework OpenGL -framework AppKit -lz
 ifeq ($(shell uname), Linux)
 	MLXFLAGS	=	-Iminilibx-linux -lXext -lX11 -lm -lz
 	MLX = ./mlx_linux/libmlx.a
+	MLX_CP		=	./mlx_linux
 	INC = -I. -Iincludes -Imlx_linux
 	M = mlx_linux
 endif
@@ -34,7 +36,7 @@ $(LIBFT):
 		@make -s -C ./libft
 
 $(MLX):
-		@make -s -C ./mlx_linux
+		@make -s -C $(MLX_CP)
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c
 		@mkdir -p $(@D)
@@ -43,6 +45,7 @@ $(OBJ_DIR)%.o:	$(SRC_DIR)%.c
 clean:
 		$(RM) -r $(OBJ_DIR)
 		@make -s clean -C ./libft
+		@make -s clean -C $(MLX_CP)
 		@echo "\033[1;31mClean .o files.\033[0m"
 
 fclean:		clean

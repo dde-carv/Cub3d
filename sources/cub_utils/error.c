@@ -5,7 +5,7 @@ int	cub_perror(t_error_type err, t_game *g, char *str, int flag)
 	(void)g;
 	if (flag == 0)
 		return (0);
-	//clean_cub(g);
+	clean_cub(g);
 	write(2, "cub3d: ", 7 * (err != end));
 	write(2, "invalid number of arguments!\n", 29 * (err == inv_ac));
 	write(2, "invalid file extension!\n", 24 * (err == inv_ext));
@@ -20,7 +20,7 @@ int	cub_perror(t_error_type err, t_game *g, char *str, int flag)
 	ft_putendl_fd(str, 2);
 	if ((err == inv_ac) || (err == inv_ext))
 	{
-		ft_putchar_fd('\n', 2);
+		//ft_putchar_fd('\n', 2);
 		cub_usage(1);
 	}
 	if (err == end)
@@ -31,6 +31,6 @@ int	cub_perror(t_error_type err, t_game *g, char *str, int flag)
 
 void	cub_usage(int error)
 {
-	ft_putstr_fd("Cub3D\nUsage: ./cub3d ./maps/<map_file.cub>",2);
+	ft_putstr_fd("Cub3D\nUsage: ./cub3d ./maps/<map_file.cub>\n",2);
 	exit(error);
 }
