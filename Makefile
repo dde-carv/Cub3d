@@ -1,23 +1,24 @@
 NAME		=	cub3D
 
 LIBFT		=	./libft/libft.a
-MLX			=
+MLX			=	./mlx/libmlx.a
 INC			=	includes/
 SRC_DIR		=	sources/
 OBJ_DIR		=	objects/
 
 CC			=	@cc
 CFLAGS		=	-Wall -Werror -Wextra -g
-MLXFLAGS	=	-L ../mlx/ -lmlx -framework OpenGL -framework AppKit -lz
+MLXFLAGS	=	-L ./mlx/ -lmlx -framework OpenGL -framework AppKit -lz
 ifeq ($(shell uname), Linux)
-	MLXFLAGS	=	-L ./mlx_linux/ -lmlx -Imlx -lXext -lX11
-	MLX = mlx_linux/libmlx.a
+	MLXFLAGS	=	-Iminilibx-linux -lXext -lX11 -lm -lz
+	MLX = ./mlx_linux/libmlx.a
 	INC = -I. -Iincludes -Imlx_linux
 	M = mlx_linux
 endif
 RM			=	@rm -f
 
-CUB_DIR	=	$(SRC_DIR)builtins/main.c \
+CUB_DIR	=	$(SRC_DIR)main.c \
+			$(SRC_DIR)cub_utils/error.c \
 
 SRCS	=	$(CUB_DIR)
 
@@ -25,12 +26,15 @@ OBJS	=	$(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
 
 all:	$(NAME)
 
-$(NAME):	$(OBJS) $(LIBFT)
+$(NAME):	$(OBJS) $(LIBFT) $(MLX)
 		@echo "\033[1;32mMake .o and executable.\033[0m"
 		@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) $(MLXFLAGS) -o $(NAME)
 
 $(LIBFT):
 		@make -s -C ./libft
+
+$(MLX):
+		@make -s -C ./mlx_linux
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c
 		@mkdir -p $(@D)

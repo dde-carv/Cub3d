@@ -4,7 +4,7 @@
 # if defined(__APPLE__) && defined(__MACH__)
 #  include "mlx/mlx.h"
 # else
-#  include "mlx_linux/mlx.h"
+#  include "../mlx_linux/mlx.h"
 # endif
 
 # if defined(__APPLE__) && defined(__MACH__)
