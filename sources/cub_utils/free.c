@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	free_pointer(void *str)
+void	free_p(void *str)
 {
 	if (!str)
 		return ;
@@ -16,7 +16,7 @@ void	free_array(void **array)
 		return ;
 	i = -1;
 	while (array[++i])
-		free_pointer(array[i]);
+		free_p(array[i]);
 	free(array);
 	array = NULL;
 }
