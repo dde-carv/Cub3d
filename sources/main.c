@@ -18,10 +18,10 @@ static void	check_args(int ac, char **av)
 	int	fd;
 
 	cub_perror(inv_ac, NULL, NULL, ac != 2);
+	cub_perror(inv_ext, NULL, NULL, check_argv(av[1]));
 	fd = open(av[1], O_RDONLY);
 	close(fd);
 	cub_perror(inv_file, NULL, av[1], fd < 0);
-	cub_perror(inv_ext, NULL, NULL, check_argv(av[1]));
 }
 
 int	main(int ac, char **av)
@@ -30,12 +30,9 @@ int	main(int ac, char **av)
 
 	check_args(ac, av);
 	g = cub_init();
+	map_read(av[1], &g);
+	game_init(&g);
 
-
-
-
-
-	
 /* 	ft_bzero(&g, sizeof(t_game));
 	if (ac == 2)
 	{

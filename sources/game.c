@@ -1,0 +1,37 @@
+#include "cub3d.h"
+
+int	cub_keydown(int k, t_game *g)
+{
+	if (k == ESC)
+		cub_perror(end, g, NULL, 1);
+	else if (k == LEFT_KEY)
+		g->pl.keys.left_pressed = 1;
+	else if (k == RIGHT_KEY)
+		g->pl.keys.right_pressed = 1;
+	else if (k == W_KEY)
+		g->pl.keys.w_pressed = 1;
+	else if (k == A_KEY)
+		g->pl.keys.a_pressed = 1;
+	else if (k == S_KEY)
+		g->pl.keys.s_pressed = 1;
+	else if (k == D_KEY)
+		g->pl.keys.d_pressed = 1;
+	return (0);
+}
+
+void	init_attributes(t_game *g)
+{
+	g->win = mlx_new_window(g->mlx, WIN_W, WIN_H, "Cub3D");
+	g->win_img.i = mlx_new_image(g->mlx, WIN_W, WIN_H);
+	g->win_img.addr = mlx_get_data_addr(g->win_img.i, &g->win_img.bpp, \
+		&g->win_img.line_len, &g->win_img.endian);
+}
+
+void	game_init(t_game *g)
+{
+	init_attributes(g);
+	mlx_hook(g->win, 02, 1L << 0, cub_keydown, g);
+	mlx_hook(g->win, 17, 0, cub_exit, g);
+	mlx_loop_hook(g->mlx, cub_update, g);
+	mlx_loop(g->mlx);
+}

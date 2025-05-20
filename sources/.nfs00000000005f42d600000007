@@ -1,0 +1,17 @@
+#include "cub3d.h"
+
+void	cub_invert_color(t_game *g)
+{
+	int		xy[2];
+
+	xy[1] = -1;
+	while (++xy[1] < WIN_H)
+	{
+		xy[0] = -1;
+		while (++xy[0] < WIN_W)
+		{
+			new_mlx_pixel_put(&g->win_img, xy[0], xy[1], 0xFFFFFF - \
+				new_mlx_pixel_get(&g->win_img, xy[0], xy[1]));
+		}
+	}
+}

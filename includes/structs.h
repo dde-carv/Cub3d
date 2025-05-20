@@ -1,3 +1,5 @@
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
 typedef enum	e_error_type
 {
@@ -6,6 +8,7 @@ typedef enum	e_error_type
 	inv_ext,
 	inv_file,
 	empty_file,
+	no_mem,
 	inv_color,
 	inv_wall,
 	inv_map,
@@ -13,39 +16,6 @@ typedef enum	e_error_type
 	inv_ply,
 	inv_tex
 }				t_error_type;
-
-typedef struct s_win
-{
-	void	*mlx;
-	void	*win;
-	void	*img_floor;
-	void	*img_wall;
-	void	*img_player;
-	void	*img_colect;
-	void	*img_exit;
-	char	**map;
-	char	**mapcopy;
-	int		n_vc;
-	int		n_ve;
-	int		n_c;
-	int		n_e;
-	int		n_p;
-	int		moves;
-	int		finish;
-	int		map_width;
-	int		map_height;
-	int		win_width;
-	int		win_height;
-	int		img_width;
-	int		img_height;
-	int		x_pos;
-	int		y_pos;
-}				t_win;
-
-typedef struct s_key
-{
-
-}				t_key;
 
 typedef struct s_textures
 {
@@ -57,17 +27,46 @@ typedef struct s_textures
 	void	*ea_img;
 }				t_textures;
 
+typedef struct s_key
+{
+	int	w_pressed;
+	int	a_pressed;
+	int	s_pressed;
+	int	d_pressed;
+	int	left_pressed;
+	int	right_pressed;
+}				t_key;
+
 typedef struct s_player
 {
-	int		x;
-	int		y;
+	float		x;
+	float		y;
 	char	dir;
+	t_key	keys;
 }				t_player;
 
 typedef struct s_game
 {
-	void	*mlx;
-	void	*win;
-	char	**map;
-	char	**mapcopy;
+	int			fd;
+	char		**map;
+	int			height;
+	int			width;
+	int			mouse_x;
+	int			rate;
+	int			neg;
+	long		nframes;
+	void		*mlx;
+	void		*win;
+	t_img		win_img;
+	t_img		win_g;
+	t_img		win_r;
+	t_img		minimap;
+	t_img		miniview;
+/* 	t_tex		tex;
+	t_ray		ray; */
+	t_player	pl;
+	float		x;
+	float		y;
 }				t_game;
+
+#endif
