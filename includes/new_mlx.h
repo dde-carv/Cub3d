@@ -23,13 +23,13 @@ typedef struct s_img
 
 
 /* Sets color for a pixel at a position in an image */
-void			new_mlx_pixel_put(t_img *data, int x, int y, int color);
+void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
 
 /* Retrieves color as int at given position from an image */
-unsigned int	new_mlx_pixel_get(t_img *data, int x, int y);
+unsigned int	my_mlx_pixel_get(t_img *data, int x, int y);
 
 /* Draws a section of a screen in a certain color */
-void			new_mlx_area_put(t_img *d, t_vector p, t_vector dim, int c);
+void			my_mlx_area_put(t_img *d, t_vector p, t_vector dim, int c);
 
 /* Writes first img to second image to given pos, ignoring "c1" pixels */
 void			mlx_img_to_img(int p[2], t_img img[2], int c1);

@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	new_mlx_pixel_put(t_img *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -8,7 +8,7 @@ void	new_mlx_pixel_put(t_img *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	new_mlx_area_put(t_img *d, t_vector p, t_vector dim, int c)
+void	my_mlx_area_put(t_img *d, t_vector p, t_vector dim, int c)
 {
 	int	x;
 	int	y;
@@ -18,8 +18,16 @@ void	new_mlx_area_put(t_img *d, t_vector p, t_vector dim, int c)
 	{
 		x = -1;
 		while (++x < dim.x)
-			new_mlx_pixel_put(d, p.x + x, p.y + y, c);
+			my_mlx_pixel_put(d, p.x + x, p.y + y, c);
 	}
+}
+
+unsigned int	my_mlx_pixel_get(t_img *data, int x, int y)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_len + x * (data->bpp / 8));
+	return (*(unsigned int *)dst);
 }
 
 void	mlx_img_to_img(int p[2], t_img img[2], int c1)
@@ -35,21 +43,13 @@ void	mlx_img_to_img(int p[2], t_img img[2], int c1)
 		{
 			if (xy[0] + p[0] >= 0 && xy[1] + p[1] >= 0)
 			{
-				color = new_mlx_pixel_get(&img[0], xy[0], xy[1]);
+				color = my_mlx_pixel_get(&img[0], xy[0], xy[1]);
 				if (color != c1)
-					new_mlx_pixel_put(&img[1], xy[0] + p[0], \
+					my_mlx_pixel_put(&img[1], xy[0] + p[0], \
 						xy[1] + p[1], color);
 			}
 		}
 	}
-}
-
-unsigned int	new_mlx_pixel_get(t_img *data, int x, int y)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_len + x * (data->bpp / 8));
-	return (*(unsigned int *)dst);
 }
 
 t_vector	ft_newvector(int x, int y)

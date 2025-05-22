@@ -45,6 +45,17 @@ typedef struct s_player
 	t_key	keys;
 }				t_player;
 
+typedef struct s_ray
+{
+	float	incre_angle;
+	float	angle;
+	float	cos;
+	float	sin;
+	float	hfov;
+	float	lim;
+	int		precision;
+}				t_ray;
+
 typedef struct s_game
 {
 	int			fd;
@@ -62,9 +73,9 @@ typedef struct s_game
 	t_img		win_r;
 	t_img		minimap;
 	t_img		miniview;
-/* 	t_tex		tex;
-	t_ray		ray; */
-	t_player	pl;
+	t_textures	tex;
+	t_ray		ray;
+	t_player	ply;
 	float		x;
 	float		y;
 }				t_game;

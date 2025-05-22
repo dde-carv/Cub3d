@@ -30,11 +30,11 @@
 # endif
 
 # ifndef WIN_H
-#  define WIN_H 1080
+#  define WIN_H 480
 # endif
 
 # ifndef WIN_W
-#  define WIN_W 1920
+#  define WIN_W 640
 # endif
 
 # ifndef SIZE
@@ -55,14 +55,14 @@ void	cub_usage(int error);
 
 /************************* MEMORY *************************/
 
-/* // Frees a pointer
+// Frees a pointer
 void	free_p(void *str);
 
 // Frees an array
 void	free_array(void **array);
 
 // Cleans the game struct
-void	clean_cub(t_game *g); */
+//void	clean_cub(t_game *g);
 
 /************************* INIT *************************/
 
@@ -78,11 +78,14 @@ void	map_read(char *path, t_game *g);
 
 void	init_attributes(t_game *g);
 void	game_init(t_game *g);
-void	cub_invert_color(t_game *g);
 t_vector	ft_newvector(int x, int y);
-int	cub_update(void *param);
-int	cub_exit(void *param);
+int		cub_update(void *param);
+int		cub_exit(void *param);
 void	cub_minimap(t_game *g);
-int	get_mini_color(t_game *g, int len, int xy[2]);
+int		get_mini_color(t_game *g, int len, int xy[2]);
+void	cub_raycast(t_game *g);
+float	distance_to_wall(t_game *g, float ray_angle);
+void	init_sprites(t_game *g);
+void	cub_miniview(t_game *g);
 
 #endif
