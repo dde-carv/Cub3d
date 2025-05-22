@@ -23,13 +23,17 @@ int	cub_update(void	*param)
 	my_mlx_area_put(&g->win_img, \
 		ft_newvector(0, 0), \
 		ft_newvector(WIN_W, WIN_H), 0xD7B076);
-		
-	//redraw_elem(g, g->minimap, 0, 0);
 
+	// minimap
 	redraw_elem(g, g->minimap, \
-		WIN_W - g->miniview.width - 30, \
-		WIN_H - g->miniview.height - 30);
+		WIN_W - g->minimap.width - 30, \
+		WIN_H - g->minimap.height - 30);
 
+	// miniview
+	/* redraw_elem(g, g->miniview, \
+		0, 0); */
+
+	// Main window
 	mlx_put_image_to_window(g->mlx, g->win, g->win_img.i, 0, 0);
 	return (0);
 }

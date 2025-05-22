@@ -35,16 +35,17 @@ void	init_attributes(t_game *g)
 	g->minimap.addr = mlx_get_data_addr(g->minimap.i, &g->minimap.bpp, \
 		&g->minimap.line_len, &g->minimap.endian);
 
+	g->minimap.width = g->width * SIZE;
+	g->minimap.height = g->height * SIZE;
+
 	// image for miniview
 	g->miniview.i = mlx_new_image(g->mlx, 30 * SIZE, 15 * SIZE);
 	g->miniview.addr = mlx_get_data_addr(g->miniview.i, &g->miniview.bpp, \
 		&g->miniview.line_len, &g->miniview.endian);
 
-	g->miniview.width = g->width * SIZE;
-	g->miniview.height = g->height * SIZE;
+	g->miniview.width = 30 * SIZE;
+	g->miniview.height = 15 * SIZE;
 
-	g->minimap.width = g->width * SIZE;
-	g->minimap.height = g->height * SIZE;
 }
 
 void	game_init(t_game *g)
