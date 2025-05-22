@@ -23,8 +23,10 @@ CUB_DIR	=	$(SRC_DIR)main.c \
 			$(SRC_DIR)game.c \
 			$(SRC_DIR)render.c \
 			$(SRC_DIR)minimap.c \
+			$(SRC_DIR)raycasting.c \
 			$(SRC_DIR)new_mlx.c \
 			$(SRC_DIR)cub_utils/error.c \
+			$(SRC_DIR)cub_utils/free.c \
 			$(SRC_DIR)cub_utils/init.c \
 			$(SRC_DIR)map_utils/map_read.c \
 

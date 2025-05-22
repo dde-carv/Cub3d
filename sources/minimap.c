@@ -1,5 +1,31 @@
 #include "cub3d.h"
 
+void	cub_miniview(t_game *g)
+{
+	int	xy[2];
+	int	i[2];
+
+	i[1] = -1;
+	xy[1] = (g->ply.y + 0.5) * SIZE - (int)(g->miniview.height / 2);
+	while (++i[1] < (g->miniview.height))
+	{
+		i[0] = -1;
+		xy[0] = (g->ply.x + 0.5) * SIZE - (int)(g->miniview.width / 2);
+		while (++i[0] < g->miniview.width)
+		{
+			if (xy[1] >= 0 && xy[1] < (g->height * SIZE)
+				&& xy[0] >= 0 \
+				&& xy[0] < (g->width * SIZE))
+				my_mlx_pixel_put(&g->miniview, i[0], i[1], \
+					my_mlx_pixel_get(&g->minimap, xy[0], xy[1]));
+			else
+				my_mlx_pixel_put(&g->miniview, i[0], i[1], 0xFF000000);
+			xy[0]++;
+		}
+		xy[1]++;
+	}
+}
+
 int	get_mini_color(t_game *g, int len, int xy[2])
 {
 	int	color;
@@ -29,7 +55,7 @@ void	cub_minimap(t_game *g)
 		xy[0] = -1;
 		len = ft_strlen(g->map[xy[1]]);
 		while (++xy[0] < g->width)
-			new_mlx_area_put(&g->minimap, \
+			my_mlx_area_put(&g->minimap, \
 				ft_newvector(xy[0] * SIZE, xy[1] * SIZE), \
 				ft_newvector(SIZE, SIZE), get_mini_color(g, len, xy));
 	}
