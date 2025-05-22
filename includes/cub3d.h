@@ -30,15 +30,15 @@
 # endif
 
 # ifndef WIN_H
-#  define WIN_H 480
+#  define WIN_H 1080
 # endif
 
 # ifndef WIN_W
-#  define WIN_W 640
+#  define WIN_W 1920
 # endif
 
 # ifndef SIZE
-#  define SIZE 7
+#  define SIZE 15
 # endif
 
 # include "../libft/inc/libft.h"

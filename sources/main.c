@@ -30,7 +30,7 @@ int	main(int ac, char **av)
 
 	check_args(ac, av);
 	g = cub_init();
-	//map_read(av[1], &g);
+	map_read(av[1], &g);
 	game_init(&g);
 
 /* 	ft_bzero(&g, sizeof(t_game));
