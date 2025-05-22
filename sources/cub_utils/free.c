@@ -23,5 +23,5 @@ void	free_array(void **array)
 
 void	clean_cub(t_game *g)
 {
-
+	(void)g;
 }
