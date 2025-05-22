@@ -5,7 +5,7 @@ void	cub_perror(t_error_type err, t_game *g, char *str, int flag)
 	(void)g;
 	if (flag == 0)
 		return ;
-	clean_cub(g);
+	//clean_cub(g);
 	write(2, "cub3d: ", 7 * (err != end));
 	write(2, "invalid number of arguments!\n", 29 * (err == inv_ac));
 	write(2, "invalid file extension!\n", 24 * (err == inv_ext));
