@@ -39,9 +39,10 @@ typedef struct s_key
 
 typedef struct s_player
 {
+	char	dir;
 	float		x;
 	float		y;
-	char	dir;
+	float	speed;
 	t_key	keys;
 }				t_player;
 
