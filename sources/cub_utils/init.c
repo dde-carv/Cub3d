@@ -1,13 +1,10 @@
 #include "cub3d.h"
 
-void	init_sprites(t_game *g)
+static void	init_text(t_game *g)
 {
 	g->win_img.i = NULL;
 	g->minimap.i = NULL;
-}
-
-static void	init_text(t_game *g)
-{
+	g->miniview.i = NULL;
 	g->tex.c_color = 0;
 	g->tex.f_color = 0;
 	g->tex.no_img = NULL;
@@ -20,8 +17,6 @@ t_game	cub_init(void)
 {
 	t_game	g;
 
-	g.mlx = NULL;
-	g.win = NULL;
 	g.fd = -1;
 	g.map = NULL;
 	g.height = 0;
@@ -29,8 +24,13 @@ t_game	cub_init(void)
 	g.ply.dir = 0;
 	g.ply.x = -1;
 	g.ply.y = -1;
+	g.mlx = NULL;
+	g.win = NULL;
 	g.mlx = mlx_init();
 	init_text(&g);
+	g.ply.x = -1;
+	g.ply.y = -1;
+	ft_bzero(&g.ply.keys, sizeof(t_key));
 	//!! We will add more things to this
 	return(g);
 }

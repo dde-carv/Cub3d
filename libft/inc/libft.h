@@ -56,6 +56,7 @@ void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strdup(const char *src);
 
 //Additional functions
+int		ft_countchar(char *str, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin_var(unsigned int arg_n, ...);
 char	*ft_strjoin(char const *s1, char const *s2);

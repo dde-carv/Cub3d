@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int	array_len(char **array)
+static 	int	array_len(char **array)
 {
 	int	i;
 
@@ -10,7 +10,7 @@ int	array_len(char **array)
 	return (i);
 }
 
-char	**ft_extend_array(char **array, char *line)
+static char	**ft_extend_array(char **array, char *line)
 {
 	char	**extended;
 	int		len;
@@ -64,6 +64,7 @@ static void	get_cf_color(char *text, char *color, t_game *game)
 		game->tex.c_color = hex_color();
 }
 
+// !!!!!!!!! DO NOT FORGET TO CHECK THIS (not implemented) !!!!!!!!!
 static void	check_text(char *line, t_game *g)
 {
 	char	**text;
@@ -86,7 +87,13 @@ static void	check_text(char *line, t_game *g)
 	free_array((void **)text);
 }
 
-int verify_tex(t_game *g)
+static int verify_color(t_game *g)
+{
+	(void)g;
+	return (0);
+}
+
+static int verify_tex(t_game *g)
 {
 	(void)g;
 	return (0);
@@ -96,7 +103,6 @@ void	map_read(char *path, t_game *g)
 {
 	char	*line[2];
 	int		text;
-	//int		flag;
 
 	text = -1;
 	g->fd = open(path, O_RDONLY);
@@ -109,7 +115,7 @@ void	map_read(char *path, t_game *g)
 		line[1] = ft_strtrim(line[0], "\n");
 		free_p(line[0]);
 		if (line[1] && line[1][0] && ++text < 6)
-			check_text(line[1], g);
+			check_text(line[1], g);		// !!!!!!!!! DO NOT FORGET TO CHECK THIS (not implemented) !!!!!!!!!
 		else if(line[1] && line[1][0] && text >= 6)
 			g->map = ft_extend_array(g->map, line[1]);
 		if ((int)ft_strlen(line[1]) > g->width)
@@ -117,5 +123,32 @@ void	map_read(char *path, t_game *g)
 		free_p(line[1]);
 	}
 	g->height = array_len(g->map);
-	cub_perror(inv_tex, g, NULL, verify_tex(g));
+	cub_perror(inv_tex, g, NULL, verify_tex(g));	//!! Not implemented
+	cub_perror(inv_tex, g, NULL, verify_color(g));	//!! Not implemented
+}
+
+void	verify_map(t_game *g)
+{
+	int	i;
+	int	j;
+	int	w;
+
+	j = -1;
+	while (++j < g->height)
+	{
+		w = ft_strlen(g->map[j]) -1;
+		i = 0;
+		while (g->map[j][i] == ' ' && i <= w)
+			i++;
+		while (g->map[j][w] == ' ' && w > 0)
+			w--;
+		if (ft_strncmp(g->map[j], "", 1) == 0)
+			cub_perror(inv_map, g, NULL, 1);
+		if ((j == 0 || j == g->height - 1) && ft_strlen(g->map[j]) - ft_countchar(g->map[j], ' ') - ft_countchar(g->map[j], '1'))
+			cub_perror(inv_wall, g, NULL, 1);
+		else if (w > i && (g->map[j][i] != '1' || g->map[j][w] != '1'))
+			cub_perror(inv_wall, g, NULL, 1);
+	}
+	check_elements(g);
+	cub_perror(inv_map, g, NULL, !j);
 }

@@ -29,6 +29,7 @@ CUB_DIR	=	$(SRC_DIR)main.c \
 			$(SRC_DIR)cub_utils/free.c \
 			$(SRC_DIR)cub_utils/init.c \
 			$(SRC_DIR)map_utils/map_read.c \
+			$(SRC_DIR)map_utils/parse_map.c \
 
 SRCS	=	$(CUB_DIR)
 

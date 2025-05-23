@@ -74,6 +74,15 @@ t_game	cub_init(void);
 // Reads file to parse
 void	map_read(char *path, t_game *g);
 
+// Squares out the map and fill empty spaces with ' ' for consistency
+void	squared_map(t_game *g);
+
+// Preliminary verifications to the map
+void	verify_map(t_game *g);
+
+// Checks if the map is valid to play
+void	check_elements(t_game *g);
+
 /************************* RAYCAST *************************/
 
 void	init_attributes(t_game *g);
@@ -85,7 +94,6 @@ void	cub_minimap(t_game *g);
 int		get_mini_color(t_game *g, int len, int xy[2]);
 void	cub_raycast(t_game *g);
 float	distance_to_wall(t_game *g, float ray_angle);
-void	init_sprites(t_game *g);
 void	cub_miniview(t_game *g);
 
 #endif

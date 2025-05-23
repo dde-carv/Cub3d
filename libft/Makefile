@@ -48,7 +48,8 @@ FTTO_DIR		=	$(SRC_DIR)ft_to/ft_atoi.c \
 					$(SRC_DIR)ft_to/ft_tolower.c \
 					$(SRC_DIR)ft_to/ft_toupper.c
 
-FTSTR_DIR		=	$(SRC_DIR)ft_str/ft_split.c \
+FTSTR_DIR		=	$(SRC_DIR)ft_str/ft_countchar.c \
+					$(SRC_DIR)ft_str/ft_split.c \
 					$(SRC_DIR)ft_str/ft_strcat.c \
 					$(SRC_DIR)ft_str/ft_strchr.c \
 					$(SRC_DIR)ft_str/ft_strcmp.c \

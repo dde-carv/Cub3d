@@ -30,25 +30,9 @@ int	main(int ac, char **av)
 
 	check_args(ac, av);
 	g = cub_init();
-	//map_read(av[1], &g);
+	map_read(av[1], &g);
+	squared_map(&g);
+ 	verify_map(&g);
 	game_init(&g);
-
-/* 	ft_bzero(&g, sizeof(t_game));
-	if (ac == 2)
-	{
-		g.mlx = mlx_init();
-		g.map = map_read(av[1], &g);
-		g.mapcopy = map_read(av[1], &g);
-		if (check_argv(av[1]) && check_map(&g))
-		{
-			init_game(&g);
-			gameplay(&g);
-			mlx_loop(g.mlx);
-		}
-		else
-			print_error("Invalid map.", &g);
-	}
-	else
-		ft_putendl("Bad syntax:\n./cub3D ./maps/<map>.cub.\n"); */
 	return (0);
 }
