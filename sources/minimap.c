@@ -31,15 +31,11 @@ int	get_mini_color(t_game *g, int len, int xy[2])
 	int	color;
 
 	color = 0xFF000000;
-	if (xy[0] < len && g->map[xy[1]][xy[0]] == ' ')
-		color = 0xFF000000;
-	else if (xy[0] < len && g->map[xy[1]][xy[0]] == 'c')
-		color = 0x00FF0000;
-	else if (xy[0] < len && g->map[xy[1]][xy[0]] == 'o')
-		color = 0x0000FF00;
-	else if (xy[0] < len && g->map[xy[1]][xy[0]] != '1')
-		color = 0x005E5C64;
-	else if (xy[0] < len)
+	if (xy[0] < len && g->map[xy[1]][xy[0]] == '1')
+		color = 0x97784A;
+	else if (xy[0] < len && g->map[xy[1]][xy[0]] == '0')
+		color = 0xfff9e7;
+	else if (xy[0] < len && g->map[xy[1]][xy[0]] != ' ')
 		color = 0x008BB5F8;
 	return (color);
 }

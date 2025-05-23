@@ -32,7 +32,7 @@ int	main(int ac, char **av)
 	g = cub_init();
 	map_read(av[1], &g);
 	squared_map(&g);
- 	verify_map(&g);
+	verify_map(&g);
 	game_init(&g);
 	return (0);
 }
