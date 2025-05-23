@@ -24,6 +24,7 @@ t_game	cub_init(void)
 	g.ply.dir = 0;
 	g.ply.x = -1;
 	g.ply.y = -1;
+	g.ply.speed = 0.12;
 	g.mlx = NULL;
 	g.win = NULL;
 	g.mlx = mlx_init();

@@ -1,5 +1,22 @@
 #include "cub3d.h"
 
+int	cub_keyup(int k, t_game *g)
+{
+	if (k == LEFT_KEY)
+		g->ply.keys.left_pressed = 0;
+	else if (k == RIGHT_KEY)
+		g->ply.keys.right_pressed = 0;
+	else if (k == W_KEY)
+		g->ply.keys.w_pressed = 0;
+	else if (k == A_KEY)
+		g->ply.keys.a_pressed = 0;
+	else if (k == S_KEY)
+		g->ply.keys.s_pressed = 0;
+	else if (k == D_KEY)
+		g->ply.keys.d_pressed = 0;
+	return (0);
+}
+
 int	cub_keydown(int k, t_game *g)
 {
 	if (k == ESC)
@@ -52,6 +69,7 @@ void	game_init(t_game *g)
 {
 	init_attributes(g);
 	mlx_hook(g->win, 02, 1L << 0, cub_keydown, g);
+	//mlx_hook(g->win, 03, 1L << 1, cub_keyup, g);
 	mlx_hook(g->win, 17, 0, cub_exit, g);
 	mlx_loop_hook(g->mlx, cub_update, g);
 	mlx_loop(g->mlx);

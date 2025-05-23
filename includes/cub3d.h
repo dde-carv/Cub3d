@@ -41,6 +41,7 @@
 #  define SIZE 15
 # endif
 
+# include <math.h>
 # include "../libft/inc/libft.h"
 # include "new_mlx.h"
 # include "structs.h"
@@ -48,7 +49,7 @@
 /************************* ERROR *************************/
 
 // If there is an error prints the message and exits the program
-void		cub_perror(t_error_type err, t_game *g, char *str, int flag);
+void	cub_perror(t_error_type err, t_game *g, char *str, int flag);
 
 // Prints message explaining the usage of the program
 void	cub_usage(int error);
@@ -95,5 +96,7 @@ int		get_mini_color(t_game *g, int len, int xy[2]);
 void	cub_raycast(t_game *g);
 float	distance_to_wall(t_game *g, float ray_angle);
 void	cub_miniview(t_game *g);
+void	move_pl(int k, t_game *g, float ray_cos, float ray_sin);
+float	degree_to_radians(float degree);
 
 #endif
