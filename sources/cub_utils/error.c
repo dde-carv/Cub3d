@@ -16,7 +16,7 @@ void	cub_perror(t_error_type err, t_game *g, char *str, int flag)
 	write(2, "map is not not closed by walls!\n", 32 * (err == inv_wall));
 	write(2, "invalid map!\n", 13 * (err == inv_map));
 	write(2, "invalid character!\n", 19 * (err == inv_char));
-	write(2, "invalid ply!\n", 16 * (err == inv_ply));
+	write(2, "invalid player!\n", 16 * (err == inv_ply));
 	write(2, "invalid texture!\n", 17 * (err == inv_tex));
 	ft_putendl_fd(str, 2);
 	if ((err == inv_ac) || (err == inv_ext))

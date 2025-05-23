@@ -72,6 +72,8 @@ static void	check_text(char *line, t_game *g)
 	text = ft_split(line, ' ');
 	if (!text)
 		return(free_p(line), cub_perror(no_mem, g, NULL, 1));
+	if (!text[0])
+		return(free_array((void **)text), cub_perror(inv_map, g, NULL, 1));
 	if (!ft_strncmp(text[0], "NO", 3))
 		g->tex.no_img = ft_strdup(text[1]); // !!initialize xpm to mlx(watch this with luis) Review this when execution is done
 	else if (!ft_strncmp(text[0], "SO", 3))

@@ -35,16 +35,16 @@ int	cub_update(void	*param)
 	
 	check_move(g);
 
-	cub_minimap(g);
-	cub_miniview(g);
-
 	my_mlx_area_put(&g->win_img, \
 		ft_newvector(0, 0), \
 		ft_newvector(WIN_W, WIN_H), 0xD7B076);
 
+	cub_minimap(g);
+	cub_miniview(g);
+
 	// minimap
-	redraw_elem(g, g->minimap, \
-		0, 0);
+	/* redraw_elem(g, g->minimap, \
+		0, 0); */
 
 	// miniview
 	redraw_elem(g, g->miniview, \
