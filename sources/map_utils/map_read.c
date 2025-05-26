@@ -44,6 +44,7 @@ static int	create_trgb(t_color	rgb)
 	return(rgb.t << 24 | rgb.r << 16 | rgb.g << 8 | rgb.b);
 }
 
+// !!!!!!!!! Review this, Does not feel right !!!!!!!!!
 static void	get_cf_color(char **text, t_game *g)
 {
 	char	**fc;
@@ -90,7 +91,7 @@ static t_img *mlx_load_img(void *mlx, char *path)
 	return (i);
 }
 
-// !!!!!!!!! DO NOT FORGET TO CHECK THIS (not implemented) !!!!!!!!!
+// !!!!!!!!! Review this when execution is done !!!!!!!!!
 static void	check_text(char *line, t_game *g)
 {
 	char	**text;
@@ -101,15 +102,15 @@ static void	check_text(char *line, t_game *g)
 	if (!text[0])
 		return(free_array((void **)text), cub_perror(inv_map, g, NULL, 1));
 	if (!ft_strncmp(text[0], "NO", 3))
-		g->tex.no_img = mlx_load_img(g->mlx, text[1]); // !!Review this when execution is done
+		g->tex.no_img = mlx_load_img(g->mlx, text[1]);	//!! Review this when execution is done
 	else if (!ft_strncmp(text[0], "SO", 3))
-		g->tex.no_img = mlx_load_img(g->mlx, text[1]); // !!Review this when execution is done
+		g->tex.no_img = mlx_load_img(g->mlx, text[1]);	//!! Review this when execution is done
 	else if (!ft_strncmp(text[0], "WE", 3))
-		g->tex.no_img = mlx_load_img(g->mlx, text[1]); // !!Review this when execution is done
+		g->tex.no_img = mlx_load_img(g->mlx, text[1]);	//!! Review this when execution is done
 	else if (!ft_strncmp(text[0], "EA", 3))
-		g->tex.no_img = mlx_load_img(g->mlx, text[1]); // !!Review this when execution is done
+		g->tex.no_img = mlx_load_img(g->mlx, text[1]);	//!! Review this when execution is done
 	else if (!ft_strncmp(text[0], "F", 2) || !ft_strncmp(text[0], "C", 2))
-		get_cf_color(text, g);
+		get_cf_color(text, g);		//!! Review this, Does not feel right
 	else
 		return(free_array((void **)text), cub_perror(inv_map, g, NULL, 1));
 	free_array((void **)text);
@@ -143,7 +144,7 @@ void	map_read(char *path, t_game *g)
 		line[1] = ft_strtrim(line[0], "\n");
 		free_p(line[0]);
 		if (line[1] && line[1][0] && ++text < 6)
-			check_text(line[1], g);		// !!!!!!!!! DO NOT FORGET TO CHECK THIS (not implemented) !!!!!!!!!
+			check_text(line[1], g);		// !!!!!!!!! Review this when execution is done !!!!!!!!!
 		else if(line[1] && line[1][0] && text >= 6)
 			g->map = ft_extend_array(g->map, line[1]);
 		if ((int)ft_strlen(line[1]) > g->width)
