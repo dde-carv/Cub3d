@@ -39,29 +39,55 @@ static char	**ft_extend_array(char **array, char *line)
 	return (extended);
 }
 
-static int	hex_color()
+static int	create_trgb(t_color	rgb)
 {
-	return(0);
+	return(rgb.t << 24 | rgb.r << 16 | rgb.g << 8 | rgb.b);
 }
 
-static void	get_cf_color(char *text, char *color, t_game *game)
+static void	get_cf_color(char **text, t_game *g)
 {
-	char	**rgb;
-	int		r;
-	int		g;
-	int		b;
+	char	**fc;
+	int		fc_flag[2];
+	int		color[3];
+	t_color	rgb;
 
-	rgb = ft_split(color, ',');
-	r = ft_atoi(rgb[0]);
-	g = ft_atoi(rgb[1]);
-	b = ft_atoi(rgb[1]);
-	cub_perror(inv_color, game, NULL, (array_len(rgb) != 3));
-	cub_perror(inv_color, game, NULL, (r > 255 || g > 255 || \
-		b > 255 || r < 0 || g < 0 || b < 0));
-	if (ft_strcmp(text, "F") == 0)
-		game->tex.f_color = hex_color();
-	else if (ft_strcmp(text, "C") == 0)
-		game->tex.c_color = hex_color();
+	rgb.t = 0;
+	fc_flag[0] = !ft_strcmp(text[0], "F");
+	fc_flag[1] = !ft_strcmp(text[0], "C");
+	fc = ft_split(text[1], ',');
+	if (!fc || array_len(fc) != 3)
+	{
+		free_array((void **)fc);
+		return ;
+	}
+	color[0] = rgb_atoi(fc[0], &rgb.r);
+	color[1] = rgb_atoi(fc[1], &rgb.g);
+	color[2] = rgb_atoi(fc[2], &rgb.b);
+	free_array((void **)fc);
+	if (color[0] || color[1] || color[2])
+		return ;
+	if (fc_flag[0])
+		g->tex.f_color = create_trgb(rgb);
+	else if (fc_flag[1])
+		g->tex.c_color = create_trgb(rgb);
+}
+
+static t_img *mlx_load_img(void *mlx, char *path)
+{
+	int		fd;
+	t_img	*i;
+
+	i = malloc(sizeof(t_img));
+	i->i = NULL;
+	if (!path || ft_strrncmp(path, ".xpm", 4))
+		return (i);
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		return (i);
+	close(fd);
+	i->i = mlx_xpm_file_to_image(mlx, path, &i->width, &i->height);
+	i->addr = mlx_get_data_addr(i->i, &i->bpp, &i->line_len, &i->endian);
+	return (i);
 }
 
 // !!!!!!!!! DO NOT FORGET TO CHECK THIS (not implemented) !!!!!!!!!
@@ -75,15 +101,15 @@ static void	check_text(char *line, t_game *g)
 	if (!text[0])
 		return(free_array((void **)text), cub_perror(inv_map, g, NULL, 1));
 	if (!ft_strncmp(text[0], "NO", 3))
-		g->tex.no_img = ft_strdup(text[1]); // !!initialize xpm to mlx(watch this with luis) Review this when execution is done
+		g->tex.no_img = mlx_load_img(g->mlx, text[1]); // !!Review this when execution is done
 	else if (!ft_strncmp(text[0], "SO", 3))
-		g->tex.so_img = ft_strdup(text[1]); // !!initialize xpm to mlx(watch this with luis) Review this when execution is done
+		g->tex.no_img = mlx_load_img(g->mlx, text[1]); // !!Review this when execution is done
 	else if (!ft_strncmp(text[0], "WE", 3))
-		g->tex.we_img = ft_strdup(text[1]); // !!initialize xpm to mlx(watch this with luis) Review this when execution is done
+		g->tex.no_img = mlx_load_img(g->mlx, text[1]); // !!Review this when execution is done
 	else if (!ft_strncmp(text[0], "EA", 3))
-		g->tex.ea_img = ft_strdup(text[1]); // !!initialize xpm to mlx(watch this with luis) Review this when execution is done
+		g->tex.no_img = mlx_load_img(g->mlx, text[1]); // !!Review this when execution is done
 	else if (!ft_strncmp(text[0], "F", 2) || !ft_strncmp(text[0], "C", 2))
-		get_cf_color(text[0], text[1], g);  // !!Review this when execution is done
+		get_cf_color(text, g);
 	else
 		return(free_array((void **)text), cub_perror(inv_map, g, NULL, 1));
 	free_array((void **)text);

@@ -86,6 +86,11 @@ void	verify_map(t_game *g);
 // Checks if the map is valid to play
 void	check_elements(t_game *g);
 
+/************************* COLOR *************************/
+
+// Takes the char color and converts into int
+int		rgb_atoi(const char *nptr, long *nbr);
+
 /************************* RAYCAST *************************/
 
 void	init_attributes(t_game *g);
