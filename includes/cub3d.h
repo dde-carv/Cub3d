@@ -29,6 +29,8 @@
 #  define ESC					65307
 # endif
 
+# define PI						3.1415926535
+
 # ifndef WIN_H
 #  define WIN_H 1080
 # endif
@@ -38,7 +40,7 @@
 # endif
 
 # ifndef SIZE
-#  define SIZE 15
+#  define SIZE 20
 # endif
 
 # include <math.h>
@@ -98,5 +100,6 @@ float	distance_to_wall(t_game *g, float ray_angle);
 void	cub_miniview(t_game *g);
 void	move_pl(int k, t_game *g, float ray_cos, float ray_sin);
 float	degree_to_radians(float degree);
+void	init_ray(t_game *g);
 
 #endif

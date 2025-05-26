@@ -6,10 +6,12 @@ void	move_pl(int k, t_game *g, float ray_cos, float ray_sin)
 
 	angle = g->ray.angle;
 	if (k == W_KEY)
-		angle = g->ray.angle - 90;
+		angle = g->ray.angle;
 	else if (k == A_KEY)
-		angle = g->ray.angle - 180;
+		angle = g->ray.angle - 90;
 	else if (k == S_KEY)
+		angle = g->ray.angle + 180;
+	else if (k == D_KEY)
 		angle = g->ray.angle + 90;
 	ray_cos = cos(degree_to_radians(angle)) * g->ply.speed;
 	ray_sin = sin(degree_to_radians(angle)) * g->ply.speed;

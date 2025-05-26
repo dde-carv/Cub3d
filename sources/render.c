@@ -2,10 +2,10 @@
 
 void	check_move(t_game *g)
 {
-	/* if (g->ply.keys.left_pressed)
-		g->ray.angle -= 3;
+	if (g->ply.keys.left_pressed)
+		g->ray.angle -= 6;
 	if (g->ply.keys.right_pressed)
-		g->ray.angle += 3; */
+		g->ray.angle += 6;
 	if (g->ply.keys.w_pressed)
 		move_pl(W_KEY, g, 0, 0);
 	if (g->ply.keys.a_pressed)
@@ -40,11 +40,12 @@ int	cub_update(void	*param)
 		ft_newvector(WIN_W, WIN_H), 0xD7B076);
 
 	cub_minimap(g);
+	cub_raycast(g);
 	cub_miniview(g);
 
 	// minimap
-	/* redraw_elem(g, g->minimap, \
-		0, 0); */
+	redraw_elem(g, g->minimap, \
+		30, 30);
 
 	// miniview
 	redraw_elem(g, g->miniview, \

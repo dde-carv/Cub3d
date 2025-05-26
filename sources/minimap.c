@@ -55,6 +55,6 @@ void	cub_minimap(t_game *g)
 				ft_newvector(xy[0] * SIZE, xy[1] * SIZE), \
 				ft_newvector(SIZE, SIZE), get_mini_color(g, len, xy));
 	}
-	/* my_mlx_area_put(&g->minimap, ft_newvector((int)(g->ply.x + 0.5) * SIZE, \
-		(int)(g->ply.y + 0.5) * SIZE), ft_newvector(SIZE, SIZE), 0xFF0000); */ // square player in minimap
+	/* my_mlx_area_put(&g->minimap, ft_newvector((g->ply.x) * SIZE, \
+		(g->ply.y) * SIZE), ft_newvector(SIZE, SIZE), 0xFF0000); // square player in minimap */
 }

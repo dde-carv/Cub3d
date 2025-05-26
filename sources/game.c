@@ -68,6 +68,7 @@ void	init_attributes(t_game *g)
 void	game_init(t_game *g)
 {
 	init_attributes(g);
+	init_ray(g);
 	mlx_hook(g->win, 02, 1L << 0, cub_keydown, g);
 	mlx_hook(g->win, 03, 1L << 1, cub_keyup, g);
 	mlx_hook(g->win, 17, 0, cub_exit, g);

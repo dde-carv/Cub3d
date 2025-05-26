@@ -8,6 +8,23 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+void	draw_circle(t_img *img, t_vector center, int radius, int color)
+{
+	int	x;
+	int	y;
+
+	y = -radius;
+	while (++y <= radius)
+	{
+		x = -radius;
+		while (++x <= radius)
+		{
+			if (x * x + y * y <= radius * radius)
+				my_mlx_pixel_put(img, center.x + x, center.y + y, color);
+		}
+	}
+}
+
 void	my_mlx_area_put(t_img *d, t_vector p, t_vector dim, int c)
 {
 	int	x;

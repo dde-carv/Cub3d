@@ -28,6 +28,9 @@ void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
 /* Retrieves color as int at given position from an image */
 unsigned int	my_mlx_pixel_get(t_img *data, int x, int y);
 
+/* Draws a section of a screen(circle) in a certain color */
+void			draw_circle(t_img *img, t_vector center, int radius, int color);
+
 /* Draws a section of a screen in a certain color */
 void			my_mlx_area_put(t_img *d, t_vector p, t_vector dim, int c);
 
