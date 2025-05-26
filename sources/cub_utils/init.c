@@ -5,8 +5,8 @@ static void	init_text(t_game *g)
 	g->win_img.i = NULL;
 	g->minimap.i = NULL;
 	g->miniview.i = NULL;
-	g->tex.c_color = 0;
-	g->tex.f_color = 0;
+	g->tex.c_color = -1;
+	g->tex.f_color = -1;
 	g->tex.no_img = NULL;
 	g->tex.so_img = NULL;
 	g->tex.we_img = NULL;

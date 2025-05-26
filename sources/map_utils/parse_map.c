@@ -26,30 +26,6 @@ void	squared_map(t_game *g)
 	g->map = map_square;
 }
 
-void	char_map_to_int(t_game *g)
-{
-	int	**int_map;
-	int	i, j;
-
-	int_map = malloc(sizeof(int *) * g->height);
-	if (!int_map)
-		return ;
-	for (i = 0; i < g->height; i++)
-	{
-		int_map[i] = malloc(sizeof(int) * g->width);
-		if (!int_map[i])
-			return ; // handle error properly in production code
-		for (j = 0; j < g->width; j++)
-		{
-			if (g->map[i][j] >= '0' && g->map[i][j] <= '9')
-				int_map[i][j] = g->map[i][j] - '0';
-			else
-				int_map[i][j] = -1; // or any value for non-digit chars
-		}
-	}
-	g->map_int = int_map;
-}
-
 static void	check_chars(t_game *g, char **map, int i, int j)
 {
 	if (!g->ply.dir && ft_strchr("NSWE", map[j][i]))

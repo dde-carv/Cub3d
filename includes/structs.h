@@ -17,14 +17,22 @@ typedef enum	e_error_type
 	inv_tex
 }				t_error_type;
 
+typedef struct s_color
+{
+	long	t;
+	long	r;
+	long	g;
+	long	b;
+}				t_color;
+
 typedef struct s_textures
 {
 	int		f_color;
 	int		c_color;
-	void	*no_img;
-	void	*so_img;
-	void	*we_img;
-	void	*ea_img;
+	t_img	*no_img;
+	t_img	*so_img;
+	t_img	*we_img;
+	t_img	*ea_img;
 }				t_textures;
 
 typedef struct s_key
