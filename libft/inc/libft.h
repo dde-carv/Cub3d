@@ -57,6 +57,7 @@ char	*ft_strdup(const char *src);
 
 //Additional functions
 int		ft_countchar(char *str, char c);
+int		ft_strrncmp(const char *s1, const char *s2, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin_var(unsigned int arg_n, ...);
 char	*ft_strjoin(char const *s1, char const *s2);

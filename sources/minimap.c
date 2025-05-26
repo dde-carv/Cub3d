@@ -36,7 +36,7 @@ int	get_mini_color(t_game *g, int len, int xy[2])
 	else if (xy[0] < len && g->map[xy[1]][xy[0]] == '0')
 		color = 0xfff9e7;
 	else if (xy[0] < len && g->map[xy[1]][xy[0]] != ' ')
-		color = 0x3c6c37;
+		color = 0xfff9e7;
 	return (color);
 }
 

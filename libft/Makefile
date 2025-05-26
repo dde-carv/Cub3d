@@ -66,6 +66,7 @@ FTSTR_DIR		=	$(SRC_DIR)ft_str/ft_countchar.c \
 					$(SRC_DIR)ft_str/ft_strncmp.c \
 					$(SRC_DIR)ft_str/ft_strnstr.c \
 					$(SRC_DIR)ft_str/ft_strrchr.c \
+					$(SRC_DIR)ft_str/ft_strrncmp.c \
 					$(SRC_DIR)ft_str/ft_strtrim.c \
 					$(SRC_DIR)ft_str/ft_substr.c
 
