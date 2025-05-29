@@ -5,6 +5,7 @@ static void	check_args(int ac, char **av)
 	int	fd;
 
 	cub_perror(inv_ac, NULL, NULL, ac != 2);
+	cub_perror(inv_ac, NULL, NULL, !ft_strrncmp(av[1], "/.cub", 5));
 	cub_perror(inv_ext, NULL, NULL, ft_strrncmp(av[1], ".cub", 4));
 	fd = open(av[1], O_RDONLY);
 	close(fd);
