@@ -80,7 +80,7 @@ static t_img *mlx_load_img(void *mlx, char *path)
 
 	i = malloc(sizeof(t_img));
 	i->i = NULL;
-	if (!path || ft_strrncmp(path, ".xpm", 4))
+	if (!path || ft_strrncmp(path, ".xpm", 4) || !ft_strrncmp(path, "/.xpm", 5))
 		return (i);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
@@ -104,11 +104,11 @@ static void	check_text(char *line, t_game *g)
 	if (!ft_strncmp(text[0], "NO", 3))
 		g->tex.no_img = mlx_load_img(g->mlx, text[1]);	//!! Review this when execution is done
 	else if (!ft_strncmp(text[0], "SO", 3))
-		g->tex.no_img = mlx_load_img(g->mlx, text[1]);	//!! Review this when execution is done
+		g->tex.so_img = mlx_load_img(g->mlx, text[1]);	//!! Review this when execution is done
 	else if (!ft_strncmp(text[0], "WE", 3))
-		g->tex.no_img = mlx_load_img(g->mlx, text[1]);	//!! Review this when execution is done
+		g->tex.we_img = mlx_load_img(g->mlx, text[1]);	//!! Review this when execution is done
 	else if (!ft_strncmp(text[0], "EA", 3))
-		g->tex.no_img = mlx_load_img(g->mlx, text[1]);	//!! Review this when execution is done
+		g->tex.ea_img = mlx_load_img(g->mlx, text[1]);	//!! Review this when execution is done
 	else if (!ft_strncmp(text[0], "F", 2) || !ft_strncmp(text[0], "C", 2))
 		get_cf_color(text, g);		//!! Review this, Does not feel right
 	else
