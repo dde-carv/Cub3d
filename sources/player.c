@@ -19,6 +19,7 @@ void	move_pl(int k, t_game *g, float ray_cos, float ray_sin)
 			(3 * ray_sin))][(int)(g->ply.x + 0.5)]))
 		g->ply.y += ray_sin;
 	if (!ft_strchr("1", \
-		g->map[(int)(g->ply.y + 0.5)][(int)(g->ply.x + 0.5 + (3 * ray_cos))]))
+		g->map[(int)(g->ply.y + 0.5)][(int)(g->ply.x + 0.5 + \
+			(3 * ray_cos))]))
 		g->ply.x += ray_cos;
 }

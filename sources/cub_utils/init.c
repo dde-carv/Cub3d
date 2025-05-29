@@ -1,5 +1,20 @@
 #include "cub3d.h"
 
+void	init_ray(t_game *g)
+{
+	g->ray.angle = 0;
+	if (g->ply.dir == 'S')
+		g->ray.angle = 90;
+	else if (g->ply.dir == 'W')
+		g->ray.angle = 180;
+	else if (g->ply.dir == 'N')
+		g->ray.angle = 270;
+	g->ray.hfov = 30;
+	g->ray.incre_angle = 2 * g->ray.hfov / WIN_W;
+	g->ray.precision = 50;
+	g->ray.lim = 11;
+}
+
 static void	init_text(t_game *g)
 {
 	g->win_img.i = NULL;

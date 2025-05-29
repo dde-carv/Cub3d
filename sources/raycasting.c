@@ -1,20 +1,5 @@
 #include "cub3d.h"
 
-void	init_ray(t_game *g)
-{
-	g->ray.angle = 0;
-	if (g->ply.dir == 'S')
-		g->ray.angle = 90;
-	else if (g->ply.dir == 'W')
-		g->ray.angle = 180;
-	else if (g->ply.dir == 'N')
-		g->ray.angle = 270;
-	g->ray.hfov = 30;
-	g->ray.incre_angle = 2 * g->ray.hfov / WIN_W;
-	g->ray.precision = 50;
-	g->ray.lim = 11;
-}
-
 float	distance_to_wall(t_game *g, float ray_angle)
 {
 	float	d;
@@ -30,18 +15,15 @@ float	distance_to_wall(t_game *g, float ray_angle)
 		g->x += g->ray.cos;
 		g->y += g->ray.sin;
 		if (ft_strchr("1", g->map[(int)g->y][(int)g->x]))
-			my_mlx_pixel_put(&g->minimap, g->x * SIZE, g->y * SIZE, 0x00FF0000);
+			my_mlx_pixel_put(&g->minimap, g->x * SIZE, g->y * SIZE, 0xffbd2e);
 		else if (ray_angle - 1 < g->ray.angle && ray_angle + 1 > g->ray.angle)
-			my_mlx_pixel_put(&g->minimap, g->x * SIZE, g->y * SIZE, 0x0000FF00);
+			my_mlx_pixel_put(&g->minimap, g->x * SIZE, g->y * SIZE, 0xFF0000);
 		else
-			my_mlx_pixel_put(&g->minimap, g->x * SIZE, g->y * SIZE, 0x00BDC1C6);
+			my_mlx_pixel_put(&g->minimap, g->x * SIZE, g->y * SIZE, 0x879c88);
 	}
 	draw_circle(&g->minimap,
 		ft_newvector(g->ply.x * SIZE + SIZE / 2, g->ply.y * SIZE + SIZE / 2),
 		SIZE / 2, 0xFF0000); // circle player in minimap
-	draw_circle(&g->miniview,
-		ft_newvector(g->ply.x * SIZE + SIZE / 2, g->ply.y * SIZE + SIZE / 2),
-		SIZE / 2, 0xFF0000); // circle player in miniview
 	d = sqrt(powf(g->x - g->ply.x - 0.5, 2.) + powf(g->y - g->ply.y - 0.5, 2.));
 	return (d * cos(degree_to_radians(ray_angle - g->ray.angle)));
 }

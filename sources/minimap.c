@@ -36,7 +36,7 @@ int	get_mini_color(t_game *g, int len, int xy[2])
 	else if (xy[0] < len && g->map[xy[1]][xy[0]] == '0')
 		color = 0xfff9e7;
 	else if (xy[0] < len && g->map[xy[1]][xy[0]] != ' ')
-		color = 0x3c6c37;
+		color = 0xfff9e7;
 	return (color);
 }
 
@@ -55,6 +55,4 @@ void	cub_minimap(t_game *g)
 				ft_newvector(xy[0] * SIZE, xy[1] * SIZE), \
 				ft_newvector(SIZE, SIZE), get_mini_color(g, len, xy));
 	}
-	/* my_mlx_area_put(&g->minimap, ft_newvector((g->ply.x) * SIZE, \
-		(g->ply.y) * SIZE), ft_newvector(SIZE, SIZE), 0xFF0000); // square player in minimap */
 }
