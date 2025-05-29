@@ -3,9 +3,9 @@
 void	check_move(t_game *g)
 {
 	if (g->ply.keys.left_pressed)
-		g->ray.angle -= 6;
+		g->ray.angle -= 10;
 	if (g->ply.keys.right_pressed)
-		g->ray.angle += 6;
+		g->ray.angle += 10;
 	if (g->ply.keys.w_pressed)
 		move_pl(W_KEY, g, 0, 0);
 	if (g->ply.keys.a_pressed)
@@ -31,8 +31,8 @@ void	redraw_elem(t_game *g, t_img img, int x, int y)
 int	cub_update(void	*param)
 {
 	t_game	*g;
+
 	g = param;
-	
 	check_move(g);
 
 	my_mlx_area_put(&g->win_img, \

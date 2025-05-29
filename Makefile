@@ -25,6 +25,8 @@ CUB_DIR	=	$(SRC_DIR)main.c \
 			$(SRC_DIR)minimap.c \
 			$(SRC_DIR)player.c \
 			$(SRC_DIR)utils.c \
+			$(SRC_DIR)colors.c \
+			$(SRC_DIR)textures.c \
 			$(SRC_DIR)raycasting.c \
 			$(SRC_DIR)new_mlx.c \
 			$(SRC_DIR)cub_utils/error.c \
