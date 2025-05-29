@@ -33,6 +33,7 @@ typedef struct s_textures
 	t_img	*so_img;
 	t_img	*we_img;
 	t_img	*ea_img;
+	t_img	*b;
 }				t_textures;
 
 typedef struct s_key

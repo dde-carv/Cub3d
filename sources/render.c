@@ -44,8 +44,8 @@ int	cub_update(void	*param)
 	cub_miniview(g);
 
 	// minimap
-	redraw_elem(g, g->minimap, \
-		30, 30);
+	/* redraw_elem(g, g->minimap, \
+		30, 30); */
 
 	// miniview
 	redraw_elem(g, g->miniview, \

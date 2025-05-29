@@ -39,7 +39,7 @@ void	cub_raycast(t_game *g)
 	while (++ray_count < WIN_W)
 	{
 		dist = distance_to_wall(g, ray_angle);
-		//cub_draw(g, ray_count, dist);
+		cub_draw(g, ray_count, dist);
 		ray_angle += g->ray.incre_angle;
 	}
 }

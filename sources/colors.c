@@ -1,5 +1,16 @@
 #include "cub3d.h"
 
+t_color	create_rgbt(int col)
+{
+	t_color	c;
+
+	c.t = (col >> 24) & 0xFF;
+	c.r = (col >> 16) & 0xFF;
+	c.g = (col >> 8) & 0xFF;
+	c.b = col & 0xFF;
+	return (c);
+}
+
 int	get_dist_color(int color, float ds, int tr)
 {
 	t_color	c;

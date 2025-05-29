@@ -1,11 +1,11 @@
 #include "cub3d.h"
 
-int	*get_texture(t_game *g)
+t_img	*get_texture(t_game *g)
 {
-	//t_img	*i;
+	t_img	*i;
 	float	ray_cos;
 	float	ray_sin;
-	int		color;
+	//int		color;
 
 	ray_cos = g->ray.cos;
 	if (ray_cos < 0)
@@ -23,19 +23,6 @@ int	*get_texture(t_game *g)
 		i = g->tex.ea_img;
 	else if (g->map[(int)g->y][(int)(g->x - ray_cos)] != '1')
 		i = g->tex.we_img;
-
-
-	color = 0x00000000;
-	if (g->map[(int)(g->y - (ray_sin < 0 ? -ray_sin : ray_sin))][(int)g->x] != '1')
-		color = 0xFF0000; // North wall - Red
-	else if (g->map[(int)(g->y + (ray_sin < 0 ? -ray_sin : ray_sin))][(int)g->x] != '1')
-		color = 0x00FF00; // South wall - Green
-	else if (g->map[(int)g->y][(int)(g->x + (ray_cos < 0 ? -ray_cos : ray_cos))] != '1')
-		color = 0x0000FF; // East wall - Blue
-	else if (g->map[(int)g->y][(int)(g->x - (ray_cos < 0 ? -ray_cos : ray_cos))] != '1')
-		color = 0xFFFF00; // West wall - Yellow
-	return color;
-	
 	return (i);
 }
 

@@ -106,5 +106,9 @@ void	cub_miniview(t_game *g);
 void	move_pl(int k, t_game *g, float ray_cos, float ray_sin);
 float	degree_to_radians(float degree);
 void	init_ray(t_game *g);
+int	create_trgb(t_color	rgb);
+int	get_dist_color(int color, float ds, int tr);
+t_img *mlx_load_img(void *mlx, char *path);
+void	cub_draw(t_game *g, int ray_count, float dis);
 
 #endif

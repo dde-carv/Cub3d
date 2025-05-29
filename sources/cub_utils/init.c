@@ -26,6 +26,7 @@ static void	init_text(t_game *g)
 	g->tex.so_img = NULL;
 	g->tex.we_img = NULL;
 	g->tex.ea_img = NULL;
+	g->tex.b = mlx_load_img(g->mlx, "textures/black.xpm");
 }
 
 t_game	cub_init(void)

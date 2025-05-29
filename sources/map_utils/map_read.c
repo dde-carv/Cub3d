@@ -39,7 +39,7 @@ static char	**ft_extend_array(char **array, char *line)
 	return (extended);
 }
 
-static int	create_trgb(t_color	rgb)
+int	create_trgb(t_color	rgb)
 {
 	return(rgb.t << 24 | rgb.r << 16 | rgb.g << 8 | rgb.b);
 }
@@ -73,7 +73,7 @@ static void	get_cf_color(char **text, t_game *g)
 		g->tex.c_color = create_trgb(rgb);
 }
 
-static t_img *mlx_load_img(void *mlx, char *path)
+t_img *mlx_load_img(void *mlx, char *path)
 {
 	int		fd;
 	t_img	*i;
