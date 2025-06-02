@@ -32,15 +32,15 @@
 # define PI						3.1415926535
 
 # ifndef WIN_W
-#  define WIN_W 640
+#  define WIN_W 1280
 # endif
 
 # ifndef WIN_H
-#  define WIN_H 480
+#  define WIN_H 720
 # endif
 
 # ifndef SIZE
-#  define SIZE 7
+#  define SIZE 11
 # endif
 
 # include <math.h>
