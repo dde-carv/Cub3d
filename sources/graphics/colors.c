@@ -18,7 +18,7 @@ int	get_dist_color(int color, float ds, int tr)
 
 	if (ds < 0)
 		ds = 0;
-	dif = powf(1.14, ds / 7.5);
+	dif = powf(1.14, ds / 10);
 	c = create_rgbt(color);
 	if (tr)
 		c.t -= dif;

@@ -3,9 +3,9 @@
 void	check_move(t_game *g)
 {
 	if (g->ply.keys.left_pressed)
-		g->ray.angle -= 3;
+		g->ray.angle -= 5;
 	if (g->ply.keys.right_pressed)
-		g->ray.angle += 3;
+		g->ray.angle += 5;
 	if (g->ply.keys.w_pressed)
 		move_pl(W_KEY, g, 0, 0);
 	if (g->ply.keys.a_pressed)
