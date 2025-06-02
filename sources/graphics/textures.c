@@ -31,8 +31,7 @@ int	get_tex_color(t_game *g, t_img *i, int z)
 
 	color = 0x00000000;
 	if (g->map[(int)g->y][(int)g->x] == '1')
-		color = my_mlx_pixel_get(i, (int)(i->width * (g->x + g->y)) \
-			% i->width, z);
+		color = my_mlx_pixel_get(i, (int)(i->width * (g->x + g->y)) % i->width, z);
 	else if (g->map[(int)g->y][(int)g->x] == 'c')
 		color = 0x00FF0000;
 	return (color);
