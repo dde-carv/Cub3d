@@ -3,9 +3,9 @@
 void	check_move(t_game *g)
 {
 	if (g->ply.keys.left_pressed)
-		g->ray.angle -= 10;
+		g->ray.angle -= 3;
 	if (g->ply.keys.right_pressed)
-		g->ray.angle += 10;
+		g->ray.angle += 3;
 	if (g->ply.keys.w_pressed)
 		move_pl(W_KEY, g, 0, 0);
 	if (g->ply.keys.a_pressed)
@@ -35,17 +35,13 @@ int	cub_update(void	*param)
 	g = param;
 	check_move(g);
 
-	my_mlx_area_put(&g->win_img, \
+	/* my_mlx_area_put(&g->win_img, \
 		ft_newvector(0, 0), \
-		ft_newvector(WIN_W, WIN_H), 0xD7B076);
+		ft_newvector(WIN_W, WIN_H), 0xD7B076); */
 
 	cub_minimap(g);
 	cub_raycast(g);
 	cub_miniview(g);
-
-	// minimap
-	/* redraw_elem(g, g->minimap, \
-		30, 30); */
 
 	// miniview
 	redraw_elem(g, g->miniview, \

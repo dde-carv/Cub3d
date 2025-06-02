@@ -72,15 +72,14 @@ typedef struct s_game
 	char		**map;
 	int			height;
 	int			width;
-	int			mouse_x;
+	int			win_h;
+	int			win_w;
 	int			rate;
 	int			neg;
 	long		nframes;
 	void		*mlx;
 	void		*win;
 	t_img		win_img;
-	t_img		win_g;
-	t_img		win_r;
 	t_img		minimap;
 	t_img		miniview;
 	t_textures	tex;

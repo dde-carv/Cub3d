@@ -19,7 +19,7 @@ float	distance_to_wall(t_game *g, float ray_angle)
 		else if (ray_angle - 1 < g->ray.angle && ray_angle + 1 > g->ray.angle)
 			my_mlx_pixel_put(&g->minimap, g->x * SIZE, g->y * SIZE, 0xFF0000);
 		else
-			my_mlx_pixel_put(&g->minimap, g->x * SIZE, g->y * SIZE, 0x879c88);
+			my_mlx_pixel_put(&g->minimap, g->x * SIZE, g->y * SIZE, 0xE5E0CF);
 	}
 	draw_circle(&g->minimap,
 		ft_newvector(g->ply.x * SIZE + SIZE / 2, g->ply.y * SIZE + SIZE / 2),
@@ -39,7 +39,7 @@ void	cub_raycast(t_game *g)
 	while (++ray_count < WIN_W)
 	{
 		dist = distance_to_wall(g, ray_angle);
-		cub_draw(g, ray_count, dist);
+		draw_cub(g, ray_count, dist);
 		ray_angle += g->ray.incre_angle;
 	}
 }

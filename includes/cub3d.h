@@ -31,16 +31,16 @@
 
 # define PI						3.1415926535
 
-# ifndef WIN_H
-#  define WIN_H 1080
+# ifndef WIN_W
+#  define WIN_W 640
 # endif
 
-# ifndef WIN_W
-#  define WIN_W 1920
+# ifndef WIN_H
+#  define WIN_H 480
 # endif
 
 # ifndef SIZE
-#  define SIZE 20
+#  define SIZE 7
 # endif
 
 # include <math.h>
@@ -93,7 +93,7 @@ int		rgb_atoi(const char *nptr, long *nbr);
 
 /************************* RAYCAST *************************/
 
-void	init_attributes(t_game *g);
+void	init_images(t_game *g);
 void	game_init(t_game *g);
 t_vector	ft_newvector(int x, int y);
 int		cub_update(void *param);
@@ -106,9 +106,9 @@ void	cub_miniview(t_game *g);
 void	move_pl(int k, t_game *g, float ray_cos, float ray_sin);
 float	degree_to_radians(float degree);
 void	init_ray(t_game *g);
-int	create_trgb(t_color	rgb);
-int	get_dist_color(int color, float ds, int tr);
-t_img *mlx_load_img(void *mlx, char *path);
-void	cub_draw(t_game *g, int ray_count, float dis);
+int		create_trgb(t_color	rgb);
+int		get_dist_color(int color, float ds, int tr);
+t_img	*mlx_load_img(void *mlx, char *path);
+void	draw_cub(t_game *g, int ray_count, float dis);
 
 #endif

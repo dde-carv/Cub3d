@@ -36,7 +36,7 @@ int	cub_keydown(int k, t_game *g)
 	return (0);
 }
 
-void	init_attributes(t_game *g)
+void	init_images(t_game *g)
 {
 	// window for mlx
 	g->win = mlx_new_window(g->mlx, WIN_W, WIN_H, "Cub3D");
@@ -67,7 +67,7 @@ void	init_attributes(t_game *g)
 
 void	game_init(t_game *g)
 {
-	init_attributes(g);
+	init_images(g);
 	init_ray(g);
 	mlx_hook(g->win, 02, 1L << 0, cub_keydown, g);
 	mlx_hook(g->win, 03, 1L << 1, cub_keyup, g);

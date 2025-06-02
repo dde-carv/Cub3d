@@ -5,7 +5,6 @@ t_img	*get_texture(t_game *g)
 	t_img	*i;
 	float	ray_cos;
 	float	ray_sin;
-	//int		color;
 
 	ray_cos = g->ray.cos;
 	if (ray_cos < 0)
@@ -66,7 +65,7 @@ void	draw_texture(t_game *g, t_img *i, int ray_count, int wall_height)
 	}
 }
 
-void	cub_draw(t_game *g, int ray_count, float dis)
+void	draw_cub(t_game *g, int ray_count, float dis)
 {
 	int		wall_height;
 	float	ds;
