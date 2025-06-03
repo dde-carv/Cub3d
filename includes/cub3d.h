@@ -29,7 +29,7 @@
 #  define ESC					65307
 # endif
 
-# define PI						3.1415926535
+# define PI						3.14159265358979323846
 
 # ifndef WIN_W
 #  define WIN_W 1280
@@ -40,7 +40,7 @@
 # endif
 
 # ifndef SIZE
-#  define SIZE 11
+#  define SIZE 20
 # endif
 
 # include <math.h>
