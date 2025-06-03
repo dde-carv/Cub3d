@@ -11,7 +11,7 @@ void	init_ray(t_game *g)
 		g->ray.angle = 270;
 	g->ray.hfov = 30;
 	g->ray.incre_angle = 2 * g->ray.hfov / WIN_W;
-	g->ray.precision = 50;
+	g->ray.precision = 100;
 	g->ray.lim = 11;
 }
 
@@ -41,13 +41,13 @@ t_game	cub_init(void)
 	g.ply.x = -1;
 	g.ply.y = -1;
 	g.ply.speed = 0.12;
+	ft_bzero(&g.ply.keys, sizeof(t_key));
 	g.mlx = NULL;
 	g.win = NULL;
 	g.mlx = mlx_init();
 	init_text(&g);
 	g.ply.x = -1;
 	g.ply.y = -1;
-	ft_bzero(&g.ply.keys, sizeof(t_key));
 	//!! We will add more things to this
 	return(g);
 }
