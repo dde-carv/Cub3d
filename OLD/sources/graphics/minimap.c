@@ -13,9 +13,9 @@ void	cub_miniview(t_game *g)
 		xy[0] = (g->ply.x + 0.5) * SIZE - (int)(g->miniview.width / 2);
 		while (++i[0] < g->miniview.width)
 		{
-			if (xy[1] >= 0 && xy[1] < (g->height * SIZE)
+			if (xy[1] >= 0 && xy[1] < (g->height_map * SIZE)
 				&& xy[0] >= 0 \
-				&& xy[0] < (g->width * SIZE))
+				&& xy[0] < (g->width_map * SIZE))
 				my_mlx_pixel_put(&g->miniview, i[0], i[1], \
 					my_mlx_pixel_get(&g->minimap, xy[0], xy[1]));
 			else
@@ -46,11 +46,11 @@ void	cub_minimap(t_game *g)
 	int	len;
 
 	xy[1] = -1;
-	while (++xy[1] < g->height)
+	while (++xy[1] < g->height_map)
 	{
 		xy[0] = -1;
 		len = ft_strlen(g->map[xy[1]]);
-		while (++xy[0] < g->width)
+		while (++xy[0] < g->width_map)
 			my_mlx_area_put(&g->minimap, \
 				ft_newvector(xy[0] * SIZE, xy[1] * SIZE), \
 				ft_newvector(SIZE, SIZE), get_mini_color(g, len, xy));

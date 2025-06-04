@@ -35,8 +35,8 @@ t_game	cub_init(void)
 
 	g.fd = -1;
 	g.map = NULL;
-	g.height = 0;
-	g.width = 0;
+	g.height_map = 0;
+	g.width_map = 0;
 	g.ply.dir = 0;
 	g.ply.x = -1;
 	g.ply.y = -1;
@@ -49,5 +49,22 @@ t_game	cub_init(void)
 	g.ply.x = -1;
 	g.ply.y = -1;
 	//!! We will add more things to this
+	// DDA/raycasting variable initialization
+	g.x_map = 0;
+	g.y_map = 0;
+	g.ray_dir_x = 0;
+	g.ray_dir_y = 0;
+	g.cam_x = 0;
+	g.side_dist_x = 0;
+	g.side_dist_y = 0;
+	g.delta_dist_x = 0;
+	g.delta_dist_y = 0;
+	g.step_x = 0;
+	g.step_y = 0;
+	g.plane_x = 0;
+	g.plane_y = 0;
+	g.wall_side = 0;
+	g.perpwalldist = 0;
+	g.wall_dist = 0;
 	return(g);
 }

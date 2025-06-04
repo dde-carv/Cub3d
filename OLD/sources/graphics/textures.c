@@ -16,13 +16,13 @@ t_img	*get_texture(t_game *g)
 
 	i = g->tex.b; // Default to black texture
 	// Check which wall was hit and select texture accordingly
-	if (g->map[(int)(g->y - ray_sin)][(int)g->x] != '1')
+	if (g->map[(int)(g->y_map - ray_sin)][(int)g->x_map] != '1')
 		i = g->tex.no_img; // North wall
-	else if (g->map[(int)(g->y + ray_sin)][(int)g->x] != '1')
+	else if (g->map[(int)(g->y_map + ray_sin)][(int)g->x_map] != '1')
 		i = g->tex.so_img; // South wall
-	else if (g->map[(int)g->y][(int)(g->x + ray_cos)] != '1')
+	else if (g->map[(int)g->y_map][(int)(g->x_map + ray_cos)] != '1')
 		i = g->tex.ea_img; // East wall
-	else if (g->map[(int)g->y][(int)(g->x - ray_cos)] != '1')
+	else if (g->map[(int)g->y_map][(int)(g->x_map - ray_cos)] != '1')
 		i = g->tex.we_img; // West wall
 	return (i); // Return selected texture
 }
@@ -34,8 +34,8 @@ int	get_tex_color(t_game *g, t_img *i, int z)
 
 	color = 0x00000000; // Default color (black/transparent)
 	// Only get color if current map cell is a wall
-	if (g->map[(int)g->y][(int)g->x] == '1')
-		color = my_mlx_pixel_get(i, (size_t)(i->width * (g->x + g->y)) % i->width, z); // Sample texture
+	if (g->map[(int)g->y_map][(int)g->x_map] == '1')
+		color = my_mlx_pixel_get(i, (size_t)(i->width * (g->x_map + g->y_map)) % i->width, z); // Sample texture
 	return (color); // Return color
 }
 

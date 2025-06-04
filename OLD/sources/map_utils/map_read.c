@@ -147,11 +147,11 @@ void	map_read(char *path, t_game *g)
 			check_text(line[1], g);		// !!!!!!!!! Review this when execution is done !!!!!!!!!
 		else if(line[1] && line[1][0] && text >= 6)
 			g->map = ft_extend_array(g->map, line[1]);
-		if ((int)ft_strlen(line[1]) > g->width)
-			g->width = ft_strlen(line[1]);
+		if ((int)ft_strlen(line[1]) > g->width_map)
+			g->width_map = ft_strlen(line[1]);
 		free_p(line[1]);
 	}
-	g->height = array_len(g->map);
+	g->height_map = array_len(g->map);
 	cub_perror(inv_tex, g, NULL, verify_tex(g));	//!! Not implemented
 	cub_perror(inv_tex, g, NULL, verify_color(g));	//!! Not implemented
 }
@@ -163,7 +163,7 @@ void	verify_map(t_game *g)
 	int	w;
 
 	j = -1;
-	while (++j < g->height)
+	while (++j < g->height_map)
 	{
 		w = ft_strlen(g->map[j]) -1;
 		i = 0;
@@ -173,7 +173,7 @@ void	verify_map(t_game *g)
 			w--;
 		if (ft_strncmp(g->map[j], "", 1) == 0)
 			cub_perror(inv_map, g, NULL, 1);
-		if ((j == 0 || j == g->height - 1) && ft_strlen(g->map[j]) - ft_countchar(g->map[j], ' ') - ft_countchar(g->map[j], '1'))
+		if ((j == 0 || j == g->height_map - 1) && ft_strlen(g->map[j]) - ft_countchar(g->map[j], ' ') - ft_countchar(g->map[j], '1'))
 			cub_perror(inv_wall, g, NULL, 1);
 		else if (w > i && (g->map[j][i] != '1' || g->map[j][w] != '1'))
 			cub_perror(inv_wall, g, NULL, 1);

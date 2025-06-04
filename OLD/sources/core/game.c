@@ -47,13 +47,13 @@ void	init_images(t_game *g)
 		&g->win_img.line_len, &g->win_img.endian);
 
 	// image for minimap
-	g->minimap.i = mlx_new_image(g->mlx, g->width * SIZE, \
-		g->height * SIZE);
+	g->minimap.i = mlx_new_image(g->mlx, g->width_map * SIZE, \
+		g->height_map * SIZE);
 	g->minimap.addr = mlx_get_data_addr(g->minimap.i, &g->minimap.bpp, \
 		&g->minimap.line_len, &g->minimap.endian);
 
-	g->minimap.width = g->width * SIZE;
-	g->minimap.height = g->height * SIZE;
+	g->minimap.width = g->width_map * SIZE;
+	g->minimap.height = g->height_map * SIZE;
 
 	// image for miniview
 	g->miniview.i = mlx_new_image(g->mlx, 30 * SIZE, 15 * SIZE);
