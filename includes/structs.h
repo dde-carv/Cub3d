@@ -1,6 +1,30 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+enum e_texture_index
+{
+	NORTH = 0,
+	SOUTH = 1,
+	EAST = 2,
+	WEST = 3
+};
+
+typedef enum	e_error_type
+{
+	end,
+	inv_ac,
+	inv_ext,
+	inv_file,
+	empty_file,
+	no_mem,
+	inv_color,
+	inv_wall,
+	inv_map,
+	inv_char,
+	inv_ply,
+	inv_tex
+}				t_error_type;
+
 typedef struct s_img
 {
 	void	*img;
@@ -44,7 +68,7 @@ typedef struct s_map
 	int			fd;
 	int			line_count;
 	char		*path;
-	char		**file;
+	char		**map;
 	int			height;
 	int			width;
 	int			index_end_of_map;
@@ -92,13 +116,12 @@ typedef struct s_game
 	void		*win;
 	int			win_height;
 	int			win_width;
-	t_map		mapinfo;
-	char		**map;
+	t_map		map;
 	t_player	player;
 	t_ray		ray;
 	int			**texture_pixels;
 	int			**textures;
-	t_tex		texinfo;
+	t_tex		tex;
 	t_img		minimap;
 }	t_game;
 

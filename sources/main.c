@@ -14,13 +14,13 @@ static void	check_args(int ac, char **av)
 
 int	main(int ac, char **av)
 {
-	t_game	g;
+	t_game	game;
 
 	check_args(ac, av);
-	g = cub_init();
-	map_read(av[1], &g);
-	squared_map(&g);
-	verify_map(&g);
-	game_init(&g);
+	init_cub(&game);
+	map_read(av[1], &game);
+	squared_map(&game);
+	verify_map(&game);
+	game_init(&game);
 	return (0);
 }
