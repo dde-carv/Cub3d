@@ -3,19 +3,19 @@
 
 enum e_output
 {
-	SUCCESS = 0,
-	FAILURE = 1,
-	ERR = 2,
-	BREAK = 3,
-	CONTINUE = 4
+	SUCCESS,
+	FAILURE,
+	ERR,
+	BREAK,
+	CONTINUE
 };
 
 enum e_texture_index
 {
-	NORTH = 0,
-	SOUTH = 1,
-	EAST = 2,
-	WEST = 3
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
 };
 
 typedef enum	e_error_type

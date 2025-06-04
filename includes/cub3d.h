@@ -78,6 +78,8 @@ void	free_array(void **array);
 // Initialize the game struct
 void	init_cub(t_game *game);
 
+void	init_player_direction(t_game *game);
+
 /************************* PARSING *************************/
 
 // Reads file to parse
@@ -91,5 +93,17 @@ void	verify_map(t_game *g);
 
 // Checks if the map is valid to play
 void	check_elements(t_game *g);
+
+/************************* UTILS *************************/
+
+// Calculates the lenght of the array
+int		array_len(char **array);
+
+// Returns the map seperated of textures
+char	**ft_extend_array(char **array, char *line);
+
+void	get_cf_color(char **text, t_game *game);
+
+unsigned long	convert_rgb_to_hex(int *rgb_tab);
 
 #endif
