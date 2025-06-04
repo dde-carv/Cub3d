@@ -21,9 +21,9 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 
-/* ---------------------------------------------------------------------------*
-							MACROS
- --------------------------------------------------------------------------- */
+/********************************************************/
+/*						MACROS							*/
+/********************************************************/
 
 # define ERR_MALLOC "Could not allocate memory"
 
@@ -34,7 +34,6 @@
 
 # define MOVESPEED 0.07
 # define ROTSPEED 0.05
-
 
 // MINIMAP MACROS
 # define MMAP_PIXEL_SIZE 128
@@ -49,36 +48,47 @@
 # define ERR_MLX_WIN "Could not create mlx window"
 # define ERR_MLX_IMG "Could not create mlx image"
 
-/* init/init_data.c */
+/********************************************************/
+/*						FUNCTIONS						*/
+/********************************************************/
+
+
+/************************* INIT *************************/
+
+/* init/init_game.c */
 void	init_cub(t_game *game);
 void	init_img_clean(t_img *img);
 void	init_ray(t_ray *ray);
 
-/************************* ERROR *************************/
+/* init/init_mlx.c */
+void	init_mlx(t_game *game);
+void	init_img(t_game *game, t_img *image, int width, int height);
+void	init_texture_img(t_game *game, t_img *image, char *path);
 
-// If there is an error prints the message and exits the program
-void	cub_perror(t_error_type err, t_game *g, char *str, int flag);
+/* init/init_textures.c */
+void	init_textures(t_game *game);
+void	init_texinfo(t_tex *textures);
 
-// Prints message explaining the usage of the program
-void	cub_usage(int error);
 
-/************************* MEMORY *************************/
+/*********************** MOVEMENT ************************/
 
-// Frees a pointer
-void	free_p(void *str);
+/* movement/input_handler.c */
+void	listen_for_input(t_game *game);
 
-// Frees an array
-void	free_array(void **array);
+/* movement/player_dir.c */
+void	init_player_direction(t_game *game);
 
-// Cleans the game struct
-//void	clean_cub(t_game *g);
+/* movement/player_pos.c */
+int		validate_move(t_game *game, double new_x, double new_y);
 
-/************************* INIT *************************/
+/* movement/player_move.c */
+int		move_player(t_game *game);
 
-// Initialize the game struct
-void	init_cub(t_game *game);
+/* movement/player_rotate.c */
+int		rotate_player(t_game *game, double rotdir);
 
-/************************* PARSING *************************/
+
+/************************ PARSING ************************/
 
 // Reads file to parse
 void	map_read(char *path, t_game *g);
@@ -91,5 +101,50 @@ void	verify_map(t_game *g);
 
 // Checks if the map is valid to play
 void	check_elements(t_game *g);
+
+
+/************************ RENDER *************************/
+
+/* render/render.c */
+int		render(t_game *game);
+void	render_images(t_game *game);
+
+/* render/raycasting.c */
+int		raycasting(t_player *player, t_game *game);
+
+/* render/texture.c */
+void	init_texture_pixels(t_game *game);
+void	update_texture_pixels(t_game *game, t_tex *tex, t_ray *ray, int x);
+
+/* render/image_utils.c */
+void	set_image_pixel(t_img *image, int x, int y, int color);
+
+/* render/minimap_render.c */
+void	render_minimap(t_game *game);
+
+/* render/minimap_image.c */
+void	render_minimap_image(t_game *game, t_minimap *minimap);
+
+
+/************************* ERROR *************************/
+
+// If there is an error prints the message and exits the program
+void	cub_perror(t_error_type err, t_game *g, char *str, int flag);
+
+// Prints message explaining the usage of the program
+void	cub_usage(int error);
+
+int	cub_exit(void *param);
+
+/************************* MEMORY *************************/
+
+// Frees a pointer
+void	free_p(void *str);
+
+// Frees an array
+void	free_array(void **array);
+
+// Cleans the game struct
+//void	clean_cub(t_game *g);
 
 #endif

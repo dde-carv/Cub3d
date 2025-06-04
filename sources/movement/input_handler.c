@@ -40,7 +40,7 @@ static int	key_release_handler(int key, t_game *game)
 
 void	listen_for_input(t_game *game)
 {
-	mlx_hook(game->win, ClientMessage, NoEventMask, quit_cub3d, game);
+	mlx_hook(game->win, ClientMessage, NoEventMask, cub_exit, game);
 	mlx_hook(game->win, KeyPress, KeyPressMask, key_press_handler, game);
 	mlx_hook(game->win, KeyRelease, KeyReleaseMask, key_release_handler, game);
 }

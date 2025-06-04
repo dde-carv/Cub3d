@@ -59,6 +59,8 @@ typedef struct s_tex
 	double			pos;
 	int				x;
 	int				y;
+	int				**texture_pixels;
+	int				**textures;
 }	t_tex;
 
 typedef struct s_minimap
@@ -97,7 +99,7 @@ typedef struct s_ray
 	double	deltadist_x;
 	double	deltadist_y;
 	double	wall_dist;
-	double	wall_x;
+	double	wall_hit;
 	int		side;
 	int		line_height;
 	int		draw_start;
@@ -123,15 +125,11 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	int			win_height;
-	int			win_width;
 	t_map		map;
+	t_img		minimap;
 	t_player	player;
 	t_ray		ray;
-	int			**texture_pixels;
-	int			**textures;
 	t_tex		tex;
-	t_img		minimap;
 }	t_game;
 
 #endif
