@@ -30,15 +30,15 @@ void	init_ray(t_ray *ray)
 	ray->draw_end = 0;
 }
 
-static void	init_mapinfo(t_map *mapinfo)
+static void	init_map(t_map *map)
 {
-	mapinfo->fd = 0;
-	mapinfo->line_count = 0;
-	mapinfo->path = NULL;
-	mapinfo->file = NULL;
-	mapinfo->height = 0;
-	mapinfo->width = 0;
-	mapinfo->index_end_of_map = 0;
+	map->fd = 0;
+	map->line_count = 0;
+	map->path = NULL;
+	map->file = NULL;
+	map->height = 0;
+	map->width = 0;
+	map->index_end_of_map = 0;
 }
 
 static void	init_player(t_player *player)
@@ -56,17 +56,17 @@ static void	init_player(t_player *player)
 	player->rotate = 0;
 }
 
-void	init_data(t_game *data)
+void	init_cub(t_game *game)
 {
-	data->mlx = NULL;
-	data->win = NULL;
-	data->win_height = WIN_HEIGHT;
-	data->win_width = WIN_WIDTH;
-	init_player(&data->player);
-	init_texinfo(&data->texinfo);
-	data->map = NULL;
-	init_mapinfo(&data->mapinfo);
-	init_img_clean(&data->minimap);
-	data->texture_pixels = NULL;
-	data->textures = NULL;
+	game->mlx = NULL;
+	game->win = NULL;
+	game->win_height = WIN_HEIGHT;
+	game->win_width = WIN_WIDTH;
+	init_player(&game->player);
+	init_tex(&game->tex);
+	game->map = NULL;
+	init_map(&game->map);
+	init_img_clean(&game->minimap);
+	game->texture_pixels = NULL;
+	game->textures = NULL;
 }

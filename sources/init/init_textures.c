@@ -6,49 +6,48 @@
 /*   By: luiribei <luiribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:34:03 by mcombeau          #+#    #+#             */
-/*   Updated: 2025/06/04 09:45:20 by luiribei         ###   ########.fr       */
+/*   Updated: 2025/06/04 11:01:12 by luiribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	*xpm_to_img(t_game *g, char *path)
+static int	*xpm_to_img(t_game *game, char *path)
 {
 	t_img	tmp;
 	int		*buffer;
 	int		x;
 	int		y;
 
-	init_texture_img(g, &tmp, path);
-	buffer = ft_calloc(1,
-			sizeof * buffer * g->texinfo.size * g->texinfo.size);
+	init_texture_img(game, &tmp, path);
+	buffer = ft_calloc(1, sizeof * buffer * game->tex.size * game->tex.size);
 	if (!buffer)
-		clean_exit(g, err_msg(NULL, ERR_MALLOC, 1));
+		clean_exit(game, err_msg(NULL, ERR_MALLOC, 1));
 	y = 0;
-	while (y < g->texinfo.size)
+	while (y < game->tex.size)
 	{
 		x = 0;
-		while (x < g->texinfo.size)
+		while (x < game->tex.size)
 		{
-			buffer[y * g->texinfo.size + x]
-				= tmp.addr[y * g->texinfo.size + x];
+			buffer[y * game->tex.size + x]
+				= tmp.addr[y * game->tex.size + x];
 			++x;
 		}
 		y++;
 	}
-	mlx_destroy_image(g->mlx, tmp.img);
+	mlx_destroy_image(game->mlx, tmp.img);
 	return (buffer);
 }
 
-void	init_textures(t_game *g)
+void	init_textures(t_game *game)
 {
-	g->textures = ft_calloc(5, sizeof * g->textures);
-	if (!g->textures)
-		clean_exit(g, err_msg(NULL, ERR_MALLOC, 1));
-	g->textures[NORTH] = xpm_to_img(g, g->texinfo.north);
-	g->textures[SOUTH] = xpm_to_img(g, g->texinfo.south);
-	g->textures[EAST] = xpm_to_img(g, g->texinfo.east);
-	g->textures[WEST] = xpm_to_img(g, g->texinfo.west);
+	game->textures = ft_calloc(5, sizeof * game->textures);
+	if (!game->textures)
+		clean_exit(game, err_msg(NULL, ERR_MALLOC, 1));
+	game->textures[NORTH] = xpm_to_img(game, game->tex.north);
+	game->textures[SOUTH] = xpm_to_img(game, game->tex.south);
+	game->textures[EAST] = xpm_to_img(game, game->tex.east);
+	game->textures[WEST] = xpm_to_img(game, game->tex.west);
 }
 
 void	init_texinfo(t_tex *textures)

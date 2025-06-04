@@ -1,6 +1,23 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+enum e_output
+{
+	SUCCESS = 0,
+	FAILURE = 1,
+	ERR = 2,
+	BREAK = 3,
+	CONTINUE = 4
+};
+
+enum e_texture_index
+{
+	NORTH = 0,
+	SOUTH = 1,
+	EAST = 2,
+	WEST = 3
+};
+
 typedef struct s_img
 {
 	void	*img;
@@ -98,7 +115,7 @@ typedef struct s_game
 	t_ray		ray;
 	int			**texture_pixels;
 	int			**textures;
-	t_tex		texinfo;
+	t_tex		tex;
 	t_img		minimap;
 }	t_game;
 
