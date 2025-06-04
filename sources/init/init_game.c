@@ -35,7 +35,7 @@ static void	init_map(t_map *map)
 	map->fd = 0;
 	map->line_count = 0;
 	map->path = NULL;
-	map->file = NULL;
+	map->map = NULL;
 	map->height = 0;
 	map->width = 0;
 	map->index_end_of_map = 0;
@@ -64,7 +64,6 @@ void	init_cub(t_game *game)
 	game->win_width = WIN_WIDTH;
 	init_player(&game->player);
 	init_tex(&game->tex);
-	game->map = NULL;
 	init_map(&game->map);
 	init_img_clean(&game->minimap);
 	game->texture_pixels = NULL;
