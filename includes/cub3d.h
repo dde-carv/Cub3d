@@ -147,4 +147,23 @@ void	free_array(void **array);
 // Cleans the game struct
 //void	clean_cub(t_game *g);
 
+/************************* INIT *************************/
+
+// Initialize the game struct
+void	init_cub(t_game *game);
+
+/************************* PARSING *************************/
+
+// Reads file to parse
+void	map_read(char *path, t_game *g);
+
+// Squares out the map and fill empty spaces with ' ' for consistency
+void	squared_map(t_game *g);
+
+// Preliminary verifications to the map
+void	verify_map(t_game *g);
+
+// Checks if the map is valid to play
+void	check_elements(t_game *g);
+
 #endif
