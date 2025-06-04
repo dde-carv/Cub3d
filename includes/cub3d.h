@@ -3,6 +3,7 @@
 
 # include "../libft/inc/libft.h"
 # include "../mlx_linux/mlx.h"
+# include "colors.h"
 # include "structs.h"
 # include <math.h>
 # include <float.h>
@@ -49,8 +50,46 @@
 # define ERR_MLX_IMG "Could not create mlx image"
 
 /* init/init_data.c */
-void	init_data(t_game *data);
+void	init_cub(t_game *game);
 void	init_img_clean(t_img *img);
 void	init_ray(t_ray *ray);
+
+/************************* ERROR *************************/
+
+// If there is an error prints the message and exits the program
+void	cub_perror(t_error_type err, t_game *g, char *str, int flag);
+
+// Prints message explaining the usage of the program
+void	cub_usage(int error);
+
+/************************* MEMORY *************************/
+
+// Frees a pointer
+void	free_p(void *str);
+
+// Frees an array
+void	free_array(void **array);
+
+// Cleans the game struct
+//void	clean_cub(t_game *g);
+
+/************************* INIT *************************/
+
+// Initialize the game struct
+void	init_cub(t_game *game);
+
+/************************* PARSING *************************/
+
+// Reads file to parse
+void	map_read(char *path, t_game *g);
+
+// Squares out the map and fill empty spaces with ' ' for consistency
+void	squared_map(t_game *g);
+
+// Preliminary verifications to the map
+void	verify_map(t_game *g);
+
+// Checks if the map is valid to play
+void	check_elements(t_game *g);
 
 #endif
