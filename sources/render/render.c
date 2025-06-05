@@ -4,9 +4,9 @@ static void	set_frame_image_pixel(t_game *game, t_img *image, int x, int y)
 {
 	if (game->tex.texture_pixels[y][x] > 0)
 		set_image_pixel(image, x, y, game->tex.texture_pixels[y][x]);
-	else if (y < WIN_HEIGHT / 2)
+	else if (y < game->win_height / 2)
 		set_image_pixel(image, x, y, game->tex.hex_ceiling);
-	else if (y < WIN_HEIGHT -1)
+	else if (y < game->win_height -1)
 		set_image_pixel(image, x, y, game->tex.hex_floor);
 }
 
@@ -17,12 +17,12 @@ static void	render_frame(t_game *game)
 	int		y;
 
 	image.img = NULL;
-	init_img(game, &image, WIN_WIDTH, WIN_HEIGHT);
+	init_img(game, &image, game->win_width, game->win_height);
 	y = 0;
-	while (y < WIN_HEIGHT)
+	while (y < game->win_height)
 	{
 		x = 0;
-		while (x < WIN_WIDTH)
+		while (x < game->win_width)
 		{
 			set_frame_image_pixel(game, &image, x, y);
 			x++;

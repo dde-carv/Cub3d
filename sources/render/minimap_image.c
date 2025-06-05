@@ -34,6 +34,27 @@ static void	draw_minimap_tile(t_minimap *minimap, int x, int y)
 			y * minimap->tile_size, MMAP_COLOR_SPACE);
 }
 
+static void	set_minimap_border_image_pixels(t_minimap *minimap, int color)
+{
+	int	size;
+	int	x;
+	int	y;
+
+	size = MMAP_PIXEL_SIZE + minimap->tile_size;
+	y = 0;
+	while (y < size)
+	{
+		x = 0;
+		while (x <= size)
+		{
+			if (x < 5 || x > size - 5 || y < 5 || y > size - 5)
+				set_image_pixel(minimap->img, x, y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
 static void	draw_minimap(t_minimap *minimap)
 {
 	int	x;
@@ -64,7 +85,6 @@ void	render_minimap_image(t_game *game, t_minimap *minimap)
 	init_img(game, &game->minimap, img_size, img_size);
 	draw_minimap(minimap);
 	mlx_put_image_to_window(game->mlx, game->win, game->minimap.img,
-		minimap->tile_size, WIN_HEIGHT
-		- (MMAP_PIXEL_SIZE + (minimap->tile_size * 2)));
+		minimap->tile_size, game->win_height - MMAP_PIXEL_SIZE + (minimap->tile_size * 2));
 	mlx_destroy_image(game->mlx, game->minimap.img);
 }

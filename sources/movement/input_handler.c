@@ -3,7 +3,7 @@
 static int	key_press_handler(int key, t_game *game)
 {
 	if (key == XK_Escape)
-		quit_cub3d(game);
+		cub_exit(game);
 	if (key == XK_Left)
 		game->player.rotate -= 1;
 	if (key == XK_Right)
@@ -22,7 +22,7 @@ static int	key_press_handler(int key, t_game *game)
 static int	key_release_handler(int key, t_game *game)
 {
 	if (key == XK_Escape)
-		quit_cub3d(game);
+		cub_exit(game);
 	if (key == XK_w && game->player.move_y == 1)
 		game->player.move_y = 0;
 	if (key == XK_s && game->player.move_y == -1)

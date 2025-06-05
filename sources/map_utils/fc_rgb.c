@@ -46,7 +46,10 @@ static int	*set_rgb_colors(char *line, t_game *game)
 	while (rgb_to_convert[count])
 		count++;
 	if (count != 3)
-		return (free_array((void **)rgb_to_convert), 0);
+	{
+		free_array((void **)rgb_to_convert);
+		return (0);
+	}
 	rgb = malloc(sizeof(int) * 3);
 	if (!rgb)
 		cub_perror(no_mem, game, NULL, 1);
@@ -61,9 +64,9 @@ void	get_cf_color(char **text, t_game *game)
 	fc_flag[0] = !ft_strcmp(text[0], "F");
 	fc_flag[1] = !ft_strcmp(text[0], "C");
 	if (fc_flag[0])
-		game->tex.floor = set_rgb_color(text[1], game);
+		game->tex.floor = set_rgb_colors(text[1], game);
 	else if (fc_flag[1])
-		game->tex.ceiling = set_rgb_color(text[1], game);
+		game->tex.ceiling = set_rgb_colors(text[1], game);
 }
 
 unsigned long	convert_rgb_to_hex(int *rgb_tab)

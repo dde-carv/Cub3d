@@ -18,9 +18,13 @@ int	main(int ac, char **av)
 
 	check_args(ac, av);
 	init_cub(&game);
+	init_mlx(&game);
 	map_read(av[1], &game);
 	squared_map(&game);
 	verify_map(&game);
-	game_init(&game);
+	render_images(&game);
+	listen_for_input(&game);
+	mlx_loop_hook(game.mlx, render, &game);
+	mlx_loop(game.mlx);
 	return (0);
 }

@@ -27,10 +27,12 @@
 
 # define ERR_MALLOC "Could not allocate memory"
 
-# define WIN_WIDTH 1280
+// # define WIN_WIDTH 1280
+// # define WIN_HEIGHT 720
+# define WIN_WIDTH 960
 # define WIN_HEIGHT 720
 
-# define TEX_SIZE 64
+# define TEX_SIZE 32
 
 # define MOVESPEED 0.07
 # define ROTSPEED 0.05
@@ -67,7 +69,7 @@ void	init_texture_img(t_game *game, t_img *image, char *path);
 
 /* init/init_textures.c */
 void	init_textures(t_game *game);
-void	init_texinfo(t_tex *textures);
+void	init_tex(t_tex *textures);
 
 
 /*********************** MOVEMENT ************************/
@@ -165,5 +167,14 @@ void	verify_map(t_game *g);
 
 // Checks if the map is valid to play
 void	check_elements(t_game *g);
+
+unsigned long	convert_rgb_to_hex(int *rgb_tab);
+
+int	array_len(char **array);
+char	**ft_extend_array(char **array, char *line);
+
+void	get_cf_color(char **text, t_game *game);
+
+int	cub_exit(void *param);
 
 #endif

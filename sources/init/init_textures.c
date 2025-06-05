@@ -6,7 +6,7 @@
 /*   By: luiribei <luiribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:34:03 by mcombeau          #+#    #+#             */
-/*   Updated: 2025/06/04 15:12:25 by luiribei         ###   ########.fr       */
+/*   Updated: 2025/06/05 09:24:27 by luiribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	*xpm_to_img(t_game *game, char *path)
 	init_texture_img(game, &tmp, path); // Load the XPM image into tmp using MLX and set up its metadata
 	buffer = ft_calloc(1, sizeof * buffer * game->tex.size * game->tex.size); // Allocate memory for the pixel buffer (size x size)
 	if (!buffer)
-		clean_exit(game, err_msg(NULL, ERR_MALLOC, 1));
+		cub_perror(no_mem, game, NULL, 1);
 	y = -1;
 	while (++y < game->tex.size) // For each row in the image
 	{
@@ -44,7 +44,7 @@ void	init_textures(t_game *game)
 {
 	game->tex.textures = ft_calloc(5, sizeof * game->tex.textures); // Allocate space for 5 texture pointers (N, S, E, W, plus one extra)
 	if (!game->tex.textures)
-		clean_exit(game, err_msg(NULL, ERR_MALLOC, 1));
+		cub_perror(no_mem, game, NULL, 1);
 	game->tex.textures[NORTH] = xpm_to_img(game, game->tex.north);
 	game->tex.textures[SOUTH] = xpm_to_img(game, game->tex.south);
 	game->tex.textures[EAST] = xpm_to_img(game, game->tex.east);
@@ -52,7 +52,7 @@ void	init_textures(t_game *game)
 }
 
 /* Initializes the t_texinfo struct with default values for all fields */
-void	init_texinfo(t_tex *textures)
+void	init_tex(t_tex *textures)
 {
 	textures->north = NULL;
 	textures->south = NULL;

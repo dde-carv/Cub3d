@@ -65,6 +65,8 @@ void	init_cub(t_game *game)
 {
 	game->mlx = NULL;
 	game->win = NULL;
+	game->win_height = WIN_HEIGHT;
+	game->win_width = WIN_WIDTH;
 	init_player(&game->player);
 	init_tex(&game->tex);
 	init_map(&game->map);

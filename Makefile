@@ -20,6 +20,26 @@ endif
 RM			=	@rm -f
 
 CUB_DIR	=	$(SRC_DIR)main.c \
+			$(SRC_DIR)cub_utils/array_utils.c \
+			$(SRC_DIR)cub_utils/error.c \
+			$(SRC_DIR)cub_utils/free.c \
+			$(SRC_DIR)init/init_game.c \
+			$(SRC_DIR)init/init_mlx.c \
+			$(SRC_DIR)init/init_textures.c \
+			$(SRC_DIR)map_utils/fc_rgb.c \
+			$(SRC_DIR)map_utils/map_read.c \
+			$(SRC_DIR)map_utils/parse_map.c \
+			$(SRC_DIR)movement/input_handler.c \
+			$(SRC_DIR)movement/player_dir.c \
+			$(SRC_DIR)movement/player_move.c \
+			$(SRC_DIR)movement/player_pos.c \
+			$(SRC_DIR)movement/player_rotate.c \
+			$(SRC_DIR)render/image_utils.c \
+			$(SRC_DIR)render/minimap_image.c \
+			$(SRC_DIR)render/minimap_render.c \
+			$(SRC_DIR)render/raycasting.c \
+			$(SRC_DIR)render/render.c \
+			$(SRC_DIR)render/texture.c \
 
 SRCS	=	$(CUB_DIR)
 

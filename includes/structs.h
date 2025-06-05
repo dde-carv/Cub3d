@@ -125,6 +125,8 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
+	int			win_height;
+	int			win_width;
 	t_map		map;
 	t_img		minimap;
 	t_player	player;

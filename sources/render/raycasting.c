@@ -94,18 +94,18 @@ static void	calculate_line_height(t_ray *ray, t_game *game, t_player *player)
 		ray->wall_dist = (ray->sidedist_x - ray->deltadist_x);
 	else
 		ray->wall_dist = (ray->sidedist_y - ray->deltadist_y);
-	ray->line_height = (int)(WIN_HEIGHT / ray->wall_dist);
-	ray->draw_start = -(ray->line_height) / 2 + WIN_HEIGHT / 2;
+	ray->line_height = (int)(game->win_height / ray->wall_dist);
+	ray->draw_start = -(ray->line_height) / 2 + game->win_height / 2;
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
-	ray->draw_end = ray->line_height / 2 + WIN_HEIGHT / 2;
-	if (ray->draw_end >= WIN_HEIGHT)
-		ray->draw_end = WIN_HEIGHT - 1;
+	ray->draw_end = ray->line_height / 2 + game->win_height / 2;
+	if (ray->draw_end >= game->win_height)
+		ray->draw_end = game->win_height - 1;
 	if (ray->side == 0)
-		ray->wall_x = player->pos_y + ray->wall_dist * ray->dir_y;
+		ray->wall_hit = player->pos_y + ray->wall_dist * ray->dir_y;
 	else
-		ray->wall_x = player->pos_x + ray->wall_dist * ray->dir_x;
-	ray->wall_x -= floor(ray->wall_x);
+		ray->wall_hit = player->pos_x + ray->wall_dist * ray->dir_x;
+	ray->wall_hit -= floor(ray->wall_hit);
 }
 
 int	raycasting(t_player *player, t_game *game)
@@ -115,7 +115,7 @@ int	raycasting(t_player *player, t_game *game)
 
 	x = 0;
 	ray = game->ray;
-	while (x < WIN_WIDTH)
+	while (x < game->win_width)
 	{
 		init_raycasting_info(x, &ray, player);
 		set_dda(&ray, player);

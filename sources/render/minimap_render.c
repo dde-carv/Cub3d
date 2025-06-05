@@ -58,7 +58,7 @@ static char	**generate_minimap(t_game *game, t_minimap *minimap)
 		mmap[y] = add_minimap_line(game, minimap, y);
 		if (!mmap[y])
 		{
-			free_tab((void **)mmap);
+			free_array((void **)mmap);
 			return (NULL);
 		}
 		y++;
@@ -81,10 +81,7 @@ void	render_minimap(t_game *game)
 			game->map.height, (int)game->player.pos_y);
 	minimap.map = generate_minimap(game, &minimap);
 	if (!minimap.map)
-	{
-		err_msg(NULL, ERR_MALLOC, 0);
-		return ;
-	}
+		cub_perror(no_mem, game, NULL, 1);
 	render_minimap_image(game, &minimap);
-	free_tab((void **)minimap.map);
+	free_array((void **)minimap.map);
 }
