@@ -27,15 +27,15 @@
 
 # define ERR_MALLOC "Could not allocate memory"
 
-// # define WIN_WIDTH 1280
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
+// # define WIN_WIDTH 960
 // # define WIN_HEIGHT 720
-# define WIN_WIDTH 960
-# define WIN_HEIGHT 720
 
 # define TEX_SIZE 32
 
-# define MOVESPEED 0.07
-# define ROTSPEED 0.05
+# define MOVESPEED 0.09
+# define ROTSPEED 0.06
 
 // MINIMAP MACROS
 # define MMAP_PIXEL_SIZE 128

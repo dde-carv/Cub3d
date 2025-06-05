@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-static int	get_mmap_offset(t_minimap *minimap, int mapsize, int pos)
+/* static int	get_mmap_offset(t_minimap *minimap, int mapsize, int pos)
 {
 	if (pos > minimap->view_dist && mapsize - pos > minimap->view_dist + 1)
 		return (pos - minimap->view_dist);
@@ -84,4 +84,4 @@ void	render_minimap(t_game *game)
 		cub_perror(no_mem, game, NULL, 1);
 	render_minimap_image(game, &minimap);
 	free_array((void **)minimap.map);
-}
+} */

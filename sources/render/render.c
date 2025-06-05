@@ -44,7 +44,7 @@ static void	render_raycast(t_game *game)
 void	render_images(t_game *game)
 {
 	render_raycast(game);
-	render_minimap(game);
+	//render_minimap(game);
 }
 
 int	render(t_game *game)

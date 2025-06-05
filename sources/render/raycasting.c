@@ -54,7 +54,7 @@ static void	set_dda(t_ray *ray, t_player *player)
 }
 
 /*
-- We implement the DDA algorithm -> the loop will increment 1 square 
+- We implement the DDA algorithm -> the loop will increment 1 square
 -   until we hit a wall
 - If the sidedistx < sidedisty, x is the closest point from the ray
 */

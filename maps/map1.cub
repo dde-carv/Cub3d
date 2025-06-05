@@ -1,10 +1,10 @@
-NO ./textures/brick.xpm
-SO ./textures/grass.xpm
-WE ./textures/musgo.xpm
-EA ./textures/stoner.xpm
+NO ./textures/respawn_anchor_side0.xpm
+SO ./textures/respawn_anchor_side2.xpm
+WE ./textures/respawn_anchor_side3.xpm
+EA ./textures/respawn_anchor_side4.xpm
 
-F 220,100,0
-C 225,30,0
+C 35,19,73
+F 15,6,40
 
         1111111111111111111111111
         1000000000110000000000001

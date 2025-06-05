@@ -31,6 +31,7 @@ static void	check_chars(t_game *game, char **map, int i, int j)
 	if (!game->player.dir && ft_strchr("NSWE", map[j][i]))
 	{
 		game->player.dir = map[j][i];
+		game->map.map[j][i] = '0';
 		game->player.pos_x = (float)i + 0.5;
 		game->player.pos_y = (float)j + 0.5;
 	}
@@ -44,7 +45,7 @@ static void	check_chars(t_game *game, char **map, int i, int j)
 
 static void	check_walls(t_game *game, char **map, int i, int j)
 {
-		if (j - 1 >= 0 && j - 1 < game->map.height)
+	if (j - 1 >= 0 && j - 1 < game->map.height)
 	{
 		if (i - 1 >= 0 && i - 1 < (int)ft_strlen(map[j - 1]))
 			cub_perror(inv_wall, game, NULL, map[j - 1][i - 1] == '0');
