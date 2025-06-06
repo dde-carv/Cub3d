@@ -6,8 +6,7 @@ void	init_texture_pixels(t_game *game)
 
 	if (game->tex.texture_pixels)
 		free_array((void **)game->tex.texture_pixels);
-	game->tex.texture_pixels = ft_calloc(game->win_height + 1,
-			sizeof * game->tex.texture_pixels);
+	game->tex.texture_pixels = ft_calloc(game->win_height + 1, sizeof * game->tex.texture_pixels);
 	if (!game->tex.texture_pixels)
 		cub_perror(no_mem, game, NULL, 1);
 	i = 0;

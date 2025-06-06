@@ -34,6 +34,8 @@
 
 # define TEX_SIZE 32
 
+# define COLLISION_DIST 0.5
+
 # define MOVESPEED 0.07
 # define ROTSPEED 0.05
 
