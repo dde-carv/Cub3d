@@ -22,9 +22,9 @@ char	**ft_extend_array(char **array, char *line)
 		return (array);
 	len = array_len(array);
 	extended = malloc(sizeof(char *) * (len + 2));
-	extended[len + 1] = NULL;
 	if (!extended)
 		return (array);
+	extended[len + 1] = NULL;
 	while (++i < len)
 	{
 		extended[i] = ft_strdup(array[i]);

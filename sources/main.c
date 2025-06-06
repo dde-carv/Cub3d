@@ -20,7 +20,7 @@ int	main(int ac, char **av)
 	init_cub(&game);
 	init_mlx(&game);
 	map_read(av[1], &game);
-	squared_map(&game);
+	game.map.map = squared_map(&game);
 	verify_map(&game);
 	render_images(&game);
 	listen_for_input(&game);

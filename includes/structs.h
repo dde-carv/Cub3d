@@ -18,7 +18,7 @@ enum e_texture_index
 	WEST
 };
 
-typedef enum	e_error_type
+typedef enum e_error_type
 {
 	end,
 	inv_ac,

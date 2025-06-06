@@ -2,10 +2,9 @@
 
 void	cub_perror(t_error_type err, t_game *g, char *str, int flag)
 {
-	(void)g;
 	if (flag == 0)
 		return ;
-	//clean_cub(g);
+	clean_cub(g);
 	ft_printf(RED);
 	write(2, "cub3d: ", 7 * (err != end));
 	write(2, "invalid number of arguments!\n", 29 * (err == inv_ac));
@@ -31,7 +30,7 @@ void	cub_perror(t_error_type err, t_game *g, char *str, int flag)
 void	cub_usage(int error)
 {
 	ft_printf(CYAN);
-	ft_putstr_fd("Cub3D\nUsage: ./cub3d ./maps/<map_file.cub>\n",2);
+	ft_putstr_fd("Cub3D\nUsage: ./cub3d ./maps/<map_file.cub>\n", 2);
 	ft_printf(RESET);
 	exit(error);
 }
