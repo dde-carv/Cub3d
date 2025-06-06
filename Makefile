@@ -39,7 +39,7 @@ CUB_DIR	=	$(SRC_DIR)main.c \
 			$(SRC_DIR)render/minimap_render.c \
 			$(SRC_DIR)render/raycasting.c \
 			$(SRC_DIR)render/render.c \
-			$(SRC_DIR)render/texture.c \
+			$(SRC_DIR)render/textures.c \
 
 SRCS	=	$(CUB_DIR)
 

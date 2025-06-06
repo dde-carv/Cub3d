@@ -14,32 +14,34 @@ static int	check_valid_rgb(int *rgb, t_game *game)
 	return (0);
 }
 
-static int verify_color(t_game *game)
+static int	verify_color(t_game *game)
 {
-	if (!game->tex.floor || !game->tex.ceiling || check_valid_rgb(game->tex.floor, game) || check_valid_rgb(game->tex.ceiling, game))
-		return(1);
+	if (!game->tex.floor || !game->tex.ceiling || \
+		check_valid_rgb(game->tex.floor, game) || \
+		check_valid_rgb(game->tex.ceiling, game))
+		return (1);
 	game->tex.hex_ceiling = convert_rgb_to_hex(game->tex.ceiling);
 	game->tex.hex_floor = convert_rgb_to_hex(game->tex.floor);
 	return (0);
 }
 
-static int verify_tex(t_game *game)
+static int	verify_tex(t_game *game)
 {
-	if (!game->tex.north || !game->tex.south || !game->tex.west || !game->tex.east)
-		return(1);
+	if (!game->tex.north || !game->tex.south || \
+		!game->tex.west || !game->tex.east)
+		return (1);
 	return (0);
 }
 
-// !!!!!!!!! Review this  !!!!!!!!!
 static void	check_text(char *line, t_game *game)
 {
 	char	**text;
 
 	text = ft_split(line, ' ');
 	if (!text)
-		return(free_p(line), cub_perror(no_mem, game, NULL, 1));
+		return (free_p(line), cub_perror(no_mem, game, NULL, 1));
 	if (!text[0] || array_len(text) != 2)
-		return(free_array((void **)text), cub_perror(inv_tex, game, NULL, 1));
+		return (free_array((void **)text), cub_perror(inv_tex, game, NULL, 1));
 	if (!ft_strncmp(text[0], "NO", 3))
 		game->tex.north = ft_strdup(text[1]);
 	else if (!ft_strncmp(text[0], "SO", 3))
@@ -49,9 +51,9 @@ static void	check_text(char *line, t_game *game)
 	else if (!ft_strncmp(text[0], "EA", 3))
 		game->tex.east = ft_strdup(text[1]);
 	else if (!ft_strncmp(text[0], "F", 2) || !ft_strncmp(text[0], "C", 2))
-		get_cf_color(text, game);		//!! Review this
+		get_cf_color(text, game);
 	else
-		return(free_array((void **)text), cub_perror(inv_map, game, NULL, 1));
+		return (free_array((void **)text), cub_perror(inv_map, game, NULL, 1));
 	free_array((void **)text);
 }
 
@@ -71,16 +73,15 @@ void	map_read(char *path, t_game *game)
 		line[1] = ft_strtrim(line[0], "\n");
 		free_p(line[0]);
 		if (line[1] && line[1][0] && ++text < 6)
-			check_text(line[1], game);		// !!!!!!!!! Review this !!!!!!!!!
-		else if(line[1] && line[1][0] && text >= 6)
+			check_text(line[1], game);
+		else if (line[1] && line[1][0] && text >= 6)
 			game->map.map = ft_extend_array(game->map.map, line[1]);
 		if ((int)ft_strlen(line[1]) > game->map.width)
 			game->map.width = ft_strlen(line[1]);
 		free_p(line[1]);
 	}
 	game->map.height = array_len(game->map.map);
-	cub_perror(inv_tex, game, NULL, verify_tex(game));	// !!!!!!!!! Review this !!!!!!!!!
-	cub_perror(inv_tex, game, NULL, verify_color(game));	// !!!!!!!!! Review this !!!!!!!!!
+	cub_perror(inv_tex, game, NULL, verify_tex(game));
+	cub_perror(inv_tex, game, NULL, verify_color(game));
 	init_textures(game);
 }
-

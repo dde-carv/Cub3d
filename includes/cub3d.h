@@ -58,123 +58,124 @@
 /************************* INIT *************************/
 
 /* init/init_game.c */
-void	init_cub(t_game *game);
-void	init_img_clean(t_img *img);
-void	init_ray(t_ray *ray);
+void			init_cub(t_game *game);
+
+/* init/init_game.c */
+void			init_img_clean(t_img *img);
+
+/* init/init_game.c */
+void			init_ray(t_ray *ray);
 
 /* init/init_mlx.c */
-void	init_mlx(t_game *game);
-void	init_img(t_game *game, t_img *image, int width, int height);
-void	init_texture_img(t_game *game, t_img *image, char *path);
+void			init_mlx(t_game *game);
+
+/* init/init_mlx.c */
+void			init_img(t_game *game, t_img *image, int width, int height);
+
+/* init/init_mlx.c */
+void			init_texture_img(t_game *game, t_img *image, char *path);
 
 /* init/init_textures.c */
-void	init_textures(t_game *game);
-void	init_tex(t_tex *textures);
+void			init_textures(t_game *game);
+
+/* init/init_textures.c */
+void			init_tex(t_tex *textures);
 
 
 /*********************** MOVEMENT ************************/
 
 /* movement/input_handler.c */
-void	listen_for_input(t_game *game);
+void			listen_for_input(t_game *game);
 
 /* movement/player_dir.c */
-void	init_player_direction(t_game *game);
+void			init_player_direction(t_game *game);
 
 /* movement/player_pos.c */
-int		validate_move(t_game *game, double new_x, double new_y);
+int				validate_move(t_game *game, double new_x, double new_y);
 
 /* movement/player_move.c */
-int		move_player(t_game *game);
+int				move_player(t_game *game);
 
 /* movement/player_rotate.c */
-int		rotate_player(t_game *game, double rotdir);
+int				rotate_player(t_game *game, double rotdir);
 
 
 /************************ PARSING ************************/
 
-// Reads file to parse
-void	map_read(char *path, t_game *g);
+/* map_utils/map_read.c */
+void			map_read(char *path, t_game *g);
 
-// Squares out the map and fill empty spaces with ' ' for consistency
-void	squared_map(t_game *g);
+/* map_utils/parse_map.c */
+char			**squared_map(t_game *g);
 
-// Preliminary verifications to the map
-void	verify_map(t_game *g);
+/* map_utils/parse_map.c */
+void			verify_map(t_game *g);
 
-// Checks if the map is valid to play
-void	check_elements(t_game *g);
+/* map_utils/parse_map.c */
+void			check_elements(t_game *g);
 
 
 /************************ RENDER *************************/
 
 /* render/render.c */
-int		render(t_game *game);
-void	render_images(t_game *game);
+int				render(t_game *game);
+
+/* render/render.c */
+void			render_images(t_game *game);
 
 /* render/raycasting.c */
-int		raycasting(t_player *player, t_game *game);
+int				raycasting(t_player *player, t_game *game);
 
 /* render/texture.c */
-void	init_texture_pixels(t_game *game);
-void	update_texture_pixels(t_game *game, t_tex *tex, t_ray *ray, int x);
+void			init_texture_pixels(t_game *game);
+
+/* render/texture.c */
+void			update_texture_pixels(t_game *game, t_tex *tex, t_ray *ray, int x);
 
 /* render/image_utils.c */
-void	set_image_pixel(t_img *image, int x, int y, int color);
+void			set_image_pixel(t_img *image, int x, int y, int color);
 
 /* render/minimap_render.c */
-void	render_minimap(t_game *game);
+void			render_minimap(t_game *game);
 
 /* render/minimap_image.c */
-void	render_minimap_image(t_game *game, t_minimap *minimap);
+void			render_minimap_image(t_game *game, t_minimap *minimap);
 
 
 /************************* ERROR *************************/
 
-// If there is an error prints the message and exits the program
-void	cub_perror(t_error_type err, t_game *g, char *str, int flag);
+/* cub_utils/error.c */
+void			cub_perror(t_error_type err, t_game *g, char *str, int flag);
 
-// Prints message explaining the usage of the program
-void	cub_usage(int error);
+/* cub_utils/error.c */
+void			cub_usage(int error);
 
-int	cub_exit(void *param);
+/* cub_utils/error.c */
+int				cub_exit(void *param);
 
 /************************* MEMORY *************************/
 
-// Frees a pointer
-void	free_p(void *str);
+/* cub_utils/free.c */
+void			free_p(void *str);
 
-// Frees an array
-void	free_array(void **array);
+/* cub_utils/free.c */
+void			free_array(void **array);
 
-// Cleans the game struct
-//void	clean_cub(t_game *g);
+/* cub_utils/free.c */
+void			clean_cub(t_game *game);
 
-/************************* INIT *************************/
+/*********************** UTILS ************************/
 
-// Initialize the game struct
-void	init_cub(t_game *game);
+/* cub_utils/array_utils.c */
+int				array_len(char **array);
 
-/************************* PARSING *************************/
+/* cub_utils/array_utils.c */
+char			**ft_extend_array(char **array, char *line);
 
-// Reads file to parse
-void	map_read(char *path, t_game *g);
+/* map_utils/fc_rgb.c */
+void			get_cf_color(char **text, t_game *game);
 
-// Squares out the map and fill empty spaces with ' ' for consistency
-void	squared_map(t_game *g);
-
-// Preliminary verifications to the map
-void	verify_map(t_game *g);
-
-// Checks if the map is valid to play
-void	check_elements(t_game *g);
-
+/* map_utils/fc_rgb.c */
 unsigned long	convert_rgb_to_hex(int *rgb_tab);
-
-int	array_len(char **array);
-char	**ft_extend_array(char **array, char *line);
-
-void	get_cf_color(char **text, t_game *game);
-
-int	cub_exit(void *param);
 
 #endif

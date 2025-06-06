@@ -1,16 +1,20 @@
 #include "cub3d.h"
 
-void	squared_map(t_game *game)
+char	**squared_map(t_game *game)
 {
 	char	**map_square;
 	int		i;
 	int		j;
 
 	map_square = malloc(sizeof(char *) * (game->map.height + 1));
+	if (!map_square)
+		return (NULL);
 	j = -1;
 	while (++j < game->map.height)
 	{
 		map_square[j] = malloc(sizeof(char ) * (game->map.width + 1));
+		if (!map_square[j])
+			return (free_array((void **)game->map.map), NULL);
 		i = -1;
 		while (++i < game->map.width)
 		{
@@ -22,8 +26,7 @@ void	squared_map(t_game *game)
 		map_square[j][i] = '\0';
 	}
 	map_square[j] = NULL;
-	free_array((void **)game->map.map);
-	game->map.map = map_square;
+	return (free_array((void **)game->map.map), map_square);
 }
 
 static void	check_chars(t_game *game, char **map, int i, int j)
@@ -88,29 +91,31 @@ void	check_elements(t_game *game)
 	}
 }
 
-void	verify_map(t_game *game)
+void	verify_map(t_game *g)
 {
 	int	i;
 	int	j;
 	int	w;
 
 	j = -1;
-	while (++j < game->map.height)
+	while (++j < g->map.height)
 	{
-		w = ft_strlen(game->map.map[j]) -1;
+		w = ft_strlen(g->map.map[j]) - 1;
 		i = 0;
-		while (game->map.map[j][i] == ' ' && i <= w)
+		while (g->map.map[j][i] == ' ' && i <= w)
 			i++;
-		while (game->map.map[j][w] == ' ' && w > 0)
+		while (g->map.map[j][w] == ' ' && w > 0)
 			w--;
-		if (ft_strncmp(game->map.map[j], "", 1) == 0)
-			cub_perror(inv_map, game, NULL, 1);
-		if ((j == 0 || j == game->map.height - 1) && ft_strlen(game->map.map[j]) - ft_countchar(game->map.map[j], ' ') - ft_countchar(game->map.map[j], '1'))
-			cub_perror(inv_wall, game, NULL, 1);
-		else if (w > i && (game->map.map[j][i] != '1' || game->map.map[j][w] != '1'))
-			cub_perror(inv_wall, game, NULL, 1);
+		if (ft_strncmp(g->map.map[j], "", 1) == 0)
+			cub_perror(inv_map, g, NULL, 1);
+		if ((j == 0 || j == g->map.height - 1) && \
+			ft_strlen(g->map.map[j]) - ft_countchar(g->map.map[j], ' ') \
+			- ft_countchar(g->map.map[j], '1'))
+			cub_perror(inv_wall, g, NULL, 1);
+		else if (w > i && (g->map.map[j][i] != '1' || g->map.map[j][w] != '1'))
+			cub_perror(inv_wall, g, NULL, 1);
 	}
-	check_elements(game);
-	cub_perror(inv_map, game, NULL, !j);
-	init_player_direction(game);
+	check_elements(g);
+	cub_perror(inv_map, g, NULL, !j);
+	init_player_direction(g);
 }
