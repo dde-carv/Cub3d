@@ -12,7 +12,7 @@ void	cub_perror(t_error_type err, t_game *g, char *str, int flag)
 	write(2, "invalid file extension!\n", 24 * (err == inv_ext));
 	write(2, "error opening file: ", 20 * (err == inv_file));
 	write(2, "file is empty!\n", 15 * (err == empty_file));
-	write(2, "device out of memory!\n", 21 * (err == no_mem));
+	write(2, "device out of memory!\n", 22 * (err == no_mem));
 	write(2, "invalid color!\n", 15 * (err == inv_color));
 	write(2, "map is not not closed by walls!\n", 32 * (err == inv_wall));
 	write(2, "invalid map!\n", 13 * (err == inv_map));

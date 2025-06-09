@@ -19,7 +19,7 @@ void	init_texture_img(t_game *game, t_img *image, char *path)
 	image->img = mlx_xpm_file_to_image(game->mlx, path, &game->tex.size,
 		&game->tex.size); // Load XPM image from file and assign its pointer
 	if (image->img == NULL)
-		cub_perror(no_mem, game, NULL, 1);
+		cub_perror(inv_tex, game, NULL, 1);
 	image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits,
 			&image->size_line, &image->endian); // Get address of image pixel data and fill image metadata
 	return ;
