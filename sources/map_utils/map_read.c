@@ -76,14 +76,14 @@ void	map_read(char *path, t_game *game)
 	while (1)
 	{
 		line[0] = get_next_line(game->map.fd);
-		if (!line[0] && !game->map.index_start_of_map)
+		if (!line[0])
 			break ;
 		line[1] = ft_strtrim(line[0], "\n");
 		free_p(line[0]);
 		if (line[1] && line[1][0] && ++text < 6)
 			check_text(line[1], game);
-		else if (line[1] && line[1][0] && text >= 6)
-			game->map.map = ft_extend_array(game->map.map, line[1], game);
+		else if (text >= 6)
+			game->map.map = ft_extend_array(game->map.map, line[1]);
 		if ((int)ft_strlen(line[1]) > game->map.width)
 			game->map.width = ft_strlen(line[1]);
 		free_p(line[1]);
