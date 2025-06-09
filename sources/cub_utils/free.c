@@ -1,5 +1,6 @@
 #include "cub3d.h"
 
+// Frees a single pointer if it is not NULL.
 void	free_p(void *str)
 {
 	if (!str)
@@ -8,6 +9,7 @@ void	free_p(void *str)
 	str = NULL;
 }
 
+// Frees an array of pointers and the array itself.
 void	free_array(void **array)
 {
 	int	i;
@@ -21,6 +23,7 @@ void	free_array(void **array)
 	array = NULL;
 }
 
+// Frees all dynamically allocated resources in the t_game struct.
 static void	free_game(t_game *game)
 {
 	if (game->tex.textures)
@@ -45,6 +48,7 @@ static void	free_game(t_game *game)
 		free_array((void **)game->map.map);
 }
 
+// Cleans up all resources related to the game, including MLX and window.
 void	clean_cub(t_game *game)
 {
 	if (!game)

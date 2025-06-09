@@ -1,5 +1,8 @@
 #include "cub3d.h"
 
+// Checks the validity of command-line arguments and the input file.
+// Exits with an error if the argument count is wrong, the file extension
+// is invalid, or the file cannot be opened.
 static void	check_args(int ac, char **av)
 {
 	int	fd;

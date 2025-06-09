@@ -1,5 +1,6 @@
 #include "cub3d.h"
 
+// Returns the number of elements in a NULL-terminated array of strings.
 int	array_len(char **array)
 {
 	int	i;
@@ -10,6 +11,8 @@ int	array_len(char **array)
 	return (i);
 }
 
+// Extends a NULL-terminated array of strings by adding a new line at the end.
+// Frees the old array and returns the new extended array.
 char	**ft_extend_array(char **array, char *line)
 {
 	char	**extended;

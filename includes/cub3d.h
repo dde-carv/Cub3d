@@ -6,7 +6,6 @@
 # include "colors.h"
 # include "structs.h"
 # include <math.h>
-# include <float.h>
 # include <limits.h>
 # include <errno.h>
 # include <fcntl.h>
@@ -54,7 +53,6 @@
 /*						FUNCTIONS						*/
 /********************************************************/
 
-
 /************************* INIT *************************/
 
 /* init/init_game.c */
@@ -81,7 +79,6 @@ void			init_textures(t_game *game);
 /* init/init_textures.c */
 void			init_tex(t_tex *textures);
 
-
 /*********************** MOVEMENT ************************/
 
 /* movement/input_handler.c */
@@ -99,7 +96,6 @@ int				move_player(t_game *game);
 /* movement/player_rotate.c */
 int				rotate_player(t_game *game, double rotdir);
 
-
 /************************ PARSING ************************/
 
 /* map_utils/map_read.c */
@@ -113,7 +109,6 @@ void			verify_map(t_game *g);
 
 /* map_utils/parse_map.c */
 void			check_elements(t_game *g);
-
 
 /************************ RENDER *************************/
 
@@ -130,7 +125,8 @@ int				raycasting(t_player *player, t_game *game);
 void			init_texture_pixels(t_game *game);
 
 /* render/texture.c */
-void			update_texture_pixels(t_game *game, t_tex *tex, t_ray *ray, int x);
+void			update_texture_pixels(t_game *game, t_tex *tex, \
+				t_ray *ray, int x);
 
 /* render/image_utils.c */
 void			set_image_pixel(t_img *image, int x, int y, int color);
@@ -140,7 +136,6 @@ void			render_minimap(t_game *game);
 
 /* render/minimap_image.c */
 void			render_minimap_image(t_game *game, t_minimap *minimap);
-
 
 /************************* ERROR *************************/
 

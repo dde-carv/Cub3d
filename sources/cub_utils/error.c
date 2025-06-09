@@ -1,5 +1,6 @@
 #include "cub3d.h"
 
+// Handles error reporting, prints error messages, cleans up resources and exits
 void	cub_perror(t_error_type err, t_game *g, char *str, int flag)
 {
 	if (flag == 0)
@@ -18,7 +19,8 @@ void	cub_perror(t_error_type err, t_game *g, char *str, int flag)
 	write(2, "invalid character!\n", 19 * (err == inv_char));
 	write(2, "invalid player!\n", 16 * (err == inv_ply));
 	write(2, "invalid texture!\n", 17 * (err == inv_tex));
-	ft_putendl_fd(str, 2);
+	if (str)
+		ft_putendl_fd(str, 2);
 	ft_printf(RESET);
 	if ((err == inv_ac) || (err == inv_ext))
 		cub_usage(1);
@@ -27,14 +29,16 @@ void	cub_perror(t_error_type err, t_game *g, char *str, int flag)
 	exit(1);
 }
 
+// Prints usage instructions and exits with the given error code.
 void	cub_usage(int error)
 {
 	ft_printf(CYAN);
-	ft_putstr_fd("Cub3D\nUsage: ./cub3d ./maps/<map_file.cub>\n", 2);
+	ft_putstr_fd("Cub3D\nUsage: ./cub3d <path/to/map_file.cub>\n", 2);
 	ft_printf(RESET);
 	exit(error);
 }
 
+// Cleans up and exits the program (used as an exit callback).
 int	cub_exit(void *param)
 {
 	cub_perror(end, param, NULL, 1);
