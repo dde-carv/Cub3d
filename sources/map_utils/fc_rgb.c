@@ -7,11 +7,11 @@ static int	no_digit(char *str)
 	int		digit_not_found;
 
 	i = 0;
-	digit_not_found = 0;
+	digit_not_found = 42;
 	while (str[i])
 	{
-		if (ft_isdigit(str[i]) == 1)
-			digit_not_found = 42;
+		if (ft_isdigit(str[i]) == 0)
+			digit_not_found = 0;
 		i++;
 	}
 	return (digit_not_found);

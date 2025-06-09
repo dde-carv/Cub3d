@@ -47,19 +47,22 @@ static void	check_text(char *line, t_game *game)
 	if (!text)
 		return (free_p(line), cub_perror(no_mem, game, NULL, 1));
 	if (!text[0] || array_len(text) != 2)
-		return (free_p(line), free_array((void **)text), cub_perror(inv_tex, game, NULL, 1));
-	if (!ft_strncmp(text[0], "NO", 3))
+		return (free_p(line), free_array((void **)text),
+			cub_perror(inv_tex, game, NULL, 1));
+	if (!ft_strncmp(text[0], "NO", 3) && !game->tex.north)
 		game->tex.north = ft_strdup(text[1]);
-	else if (!ft_strncmp(text[0], "SO", 3))
+	else if (!ft_strncmp(text[0], "SO", 3) && !game->tex.south)
 		game->tex.south = ft_strdup(text[1]);
-	else if (!ft_strncmp(text[0], "WE", 3))
+	else if (!ft_strncmp(text[0], "WE", 3) && !game->tex.west)
 		game->tex.west = ft_strdup(text[1]);
-	else if (!ft_strncmp(text[0], "EA", 3))
+	else if (!ft_strncmp(text[0], "EA", 3) && !game->tex.east)
 		game->tex.east = ft_strdup(text[1]);
-	else if (!ft_strncmp(text[0], "F", 2) || !ft_strncmp(text[0], "C", 2))
+	else if ((!ft_strncmp(text[0], "F", 2) && !game->tex.floor) || \
+			(!ft_strncmp(text[0], "C", 2) && !game->tex.ceiling))
 		get_cf_color(text, game);
 	else
-		return (free_p(line), free_array((void **)text), cub_perror(inv_map, game, NULL, 1));
+		return (free_p(line), free_array((void **)text), \
+			cub_perror(inv_map, game, NULL, 1));
 	free_array((void **)text);
 }
 
