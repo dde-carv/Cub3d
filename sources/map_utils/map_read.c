@@ -1,5 +1,6 @@
 #include "cub3d.h"
 
+// Checks if the RGB values are within the valid range (0-255).
 static int	check_valid_rgb(int *rgb, t_game *game)
 {
 	int	i;
@@ -14,6 +15,8 @@ static int	check_valid_rgb(int *rgb, t_game *game)
 	return (0);
 }
 
+// Verifies that floor and ceiling colors are set and valid,
+// then converts them to hex.
 static int	verify_color(t_game *game)
 {
 	if (!game->tex.floor || !game->tex.ceiling || \
@@ -25,6 +28,7 @@ static int	verify_color(t_game *game)
 	return (0);
 }
 
+// Verifies that all required texture paths are set.
 static int	verify_tex(t_game *game)
 {
 	if (!game->tex.north || !game->tex.south || \
@@ -33,6 +37,8 @@ static int	verify_tex(t_game *game)
 	return (0);
 }
 
+// Parses a line of text and sets the corresponding texture or
+// color in the game struct.
 static void	check_text(char *line, t_game *game)
 {
 	char	**text;
@@ -57,6 +63,8 @@ static void	check_text(char *line, t_game *game)
 	free_array((void **)text);
 }
 
+// Reads the map file, parses textures/colors and map layout,
+// and initializes textures.
 void	map_read(char *path, t_game *game)
 {
 	char	*line[2];

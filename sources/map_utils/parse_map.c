@@ -1,5 +1,7 @@
 #include "cub3d.h"
 
+// Converts the map to a rectangular (squared) array,
+// padding with spaces as needed.
 char	**squared_map(t_game *game)
 {
 	char	**map_square;
@@ -29,6 +31,7 @@ char	**squared_map(t_game *game)
 	return (free_array((void **)game->map.map), map_square);
 }
 
+// Checks and sets player start position and validates map characters.
 static void	check_chars(t_game *game, char **map, int i, int j)
 {
 	if (!game->player.dir && ft_strchr("NSWE", map[j][i]))
@@ -46,6 +49,7 @@ static void	check_chars(t_game *game, char **map, int i, int j)
 		cub_perror(inv_ply, game, NULL, 1);
 }
 
+// Checks that empty spaces are properly surrounded by walls.
 static void	check_walls(t_game *game, char **map, int i, int j)
 {
 	if (j - 1 >= 0 && j - 1 < game->map.height)
@@ -72,6 +76,7 @@ static void	check_walls(t_game *game, char **map, int i, int j)
 	}
 }
 
+// Iterates through the map to check all elements for validity.
 void	check_elements(t_game *game)
 {
 	int	i;
@@ -91,6 +96,7 @@ void	check_elements(t_game *game)
 	}
 }
 
+// Verifies the map's structure, boundaries, and player position.
 void	verify_map(t_game *g)
 {
 	int	i;

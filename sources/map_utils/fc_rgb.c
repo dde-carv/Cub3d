@@ -1,5 +1,6 @@
 #include "cub3d.h"
 
+// Checks if the string contains any digit characters.
 static int	no_digit(char *str)
 {
 	int		i;
@@ -16,6 +17,8 @@ static int	no_digit(char *str)
 	return (digit_not_found);
 }
 
+// Converts an array of RGB strings to integers, validates them,
+// and frees the input array.
 static int	*set_rgb_array(char **rgb_to_convert, int *rgb)
 {
 	int		i;
@@ -35,6 +38,7 @@ static int	*set_rgb_array(char **rgb_to_convert, int *rgb)
 	return (rgb);
 }
 
+// Splits a line into RGB values, validates, and returns an int array.
 static int	*set_rgb_colors(char *line, t_game *game)
 {
 	char	**rgb_to_convert;
@@ -57,6 +61,7 @@ static int	*set_rgb_colors(char *line, t_game *game)
 }
 
 // !!!!!!!!! Review this!!!!!!!!!
+// Parses and sets floor or ceiling color from text input.
 void	get_cf_color(char **text, t_game *game)
 {
 	int		fc_flag[2];
@@ -69,6 +74,7 @@ void	get_cf_color(char **text, t_game *game)
 		game->tex.ceiling = set_rgb_colors(text[1], game);
 }
 
+// Converts an array of 3 RGB integers to a single hexadecimal color value.
 unsigned long	convert_rgb_to_hex(int *rgb_tab)
 {
 	unsigned long	result;
