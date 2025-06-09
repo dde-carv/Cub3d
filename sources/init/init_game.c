@@ -40,7 +40,7 @@ static void	init_map(t_map *map)
 	map->map = NULL;			// Pointer to the map (array of strings), set to NULL
 	map->height = 0;			// Height of the map (number of rows)
 	map->width = 0;				// Width of the map (number of columns)
-	map->index_end_of_map = 0;	// Index of the last line of the map
+	map->index_start_of_map = 0;	// Index of the last line of the map
 }
 
 /* Initializes the t_player struct to default/empty values */

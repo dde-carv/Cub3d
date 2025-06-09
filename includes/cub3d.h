@@ -165,7 +165,7 @@ void			clean_cub(t_game *game);
 int				array_len(char **array);
 
 /* cub_utils/array_utils.c */
-char			**ft_extend_array(char **array, char *line);
+char			**ft_extend_array(char **array, char *line, t_game *game);
 
 /* map_utils/fc_rgb.c */
 void			get_cf_color(char **text, t_game *game);

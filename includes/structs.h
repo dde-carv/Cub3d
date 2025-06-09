@@ -82,7 +82,7 @@ typedef struct s_map
 	char		**map;
 	int			height;
 	int			width;
-	int			index_end_of_map;
+	int			index_start_of_map;
 }	t_map;
 
 typedef struct s_ray

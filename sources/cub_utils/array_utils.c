@@ -13,7 +13,7 @@ int	array_len(char **array)
 
 // Extends a NULL-terminated array of strings by adding a new line at the end.
 // Frees the old array and returns the new extended array.
-char	**ft_extend_array(char **array, char *line)
+char	**ft_extend_array(char **array, char *line, t_game *g)
 {
 	char	**extended;
 	int		len;
@@ -21,8 +21,10 @@ char	**ft_extend_array(char **array, char *line)
 
 	i = -1;
 	extended = NULL;
+	//(void)g;
+	g->map.index_start_of_map = 1;
 	if (!line)
-		return (array);
+		return (free_p(line), cub_perror(inv_map, g, NULL, 1), array);
 	len = array_len(array);
 	extended = malloc(sizeof(char *) * (len + 2));
 	if (!extended)
@@ -38,6 +40,6 @@ char	**ft_extend_array(char **array, char *line)
 		}
 	}
 	extended[i] = ft_strdup(line);
-	free_array((void **)array);
-	return (extended);
+	//free_array((void **)array);
+	return (free_array((void **)array), extended);
 }

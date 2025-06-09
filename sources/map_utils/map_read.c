@@ -47,7 +47,7 @@ static void	check_text(char *line, t_game *game)
 	if (!text)
 		return (free_p(line), cub_perror(no_mem, game, NULL, 1));
 	if (!text[0] || array_len(text) != 2)
-		return (free_array((void **)text), cub_perror(inv_tex, game, NULL, 1));
+		return (free_p(line), free_array((void **)text), cub_perror(inv_tex, game, NULL, 1));
 	if (!ft_strncmp(text[0], "NO", 3))
 		game->tex.north = ft_strdup(text[1]);
 	else if (!ft_strncmp(text[0], "SO", 3))
@@ -59,7 +59,7 @@ static void	check_text(char *line, t_game *game)
 	else if (!ft_strncmp(text[0], "F", 2) || !ft_strncmp(text[0], "C", 2))
 		get_cf_color(text, game);
 	else
-		return (free_array((void **)text), cub_perror(inv_map, game, NULL, 1));
+		return (free_p(line), free_array((void **)text), cub_perror(inv_map, game, NULL, 1));
 	free_array((void **)text);
 }
 
@@ -76,14 +76,14 @@ void	map_read(char *path, t_game *game)
 	while (1)
 	{
 		line[0] = get_next_line(game->map.fd);
-		if (!line[0])
+		if (!line[0] && !game->map.index_start_of_map)
 			break ;
 		line[1] = ft_strtrim(line[0], "\n");
 		free_p(line[0]);
 		if (line[1] && line[1][0] && ++text < 6)
 			check_text(line[1], game);
 		else if (line[1] && line[1][0] && text >= 6)
-			game->map.map = ft_extend_array(game->map.map, line[1]);
+			game->map.map = ft_extend_array(game->map.map, line[1], game);
 		if ((int)ft_strlen(line[1]) > game->map.width)
 			game->map.width = ft_strlen(line[1]);
 		free_p(line[1]);
