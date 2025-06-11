@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dde-carv <dde-carv@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/11 10:25:52 by dde-carv          #+#    #+#             */
+/*   Updated: 2025/06/11 10:25:53 by dde-carv         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 /*
@@ -12,18 +24,11 @@ We initialize the set up for the rays
 static void	init_raycasting_info(int x, t_ray *ray, t_player *player)
 {
 	init_ray(ray);
-	// Calculate camera_x: -1 (left) to 1 (right) across the screen
-	ray->camera_x = 2 * x / (double)WIN_WIDTH - 1;
-
-	// Calculate ray direction vector for this column
+	ray->camera_x = 2.25 * x / (double)WIN_WIDTH - 1;
 	ray->dir_x = player->dir_x + player->plane_x * ray->camera_x;
 	ray->dir_y = player->dir_y + player->plane_y * ray->camera_x;
-
-	// Which box of the map we're in
 	ray->map_x = (int)player->pos_x;
 	ray->map_y = (int)player->pos_y;
-
-	// Length of ray from one x or y-side to next x or y-side
 	ray->deltadist_x = fabs(1 / ray->dir_x);
 	ray->deltadist_y = fabs(1 / ray->dir_y);
 }
@@ -42,22 +47,22 @@ static void	set_dda(t_ray *ray, t_player *player)
 {
 	if (ray->dir_x < 0)
 	{
-		ray->step_x = -1; // Step left
+		ray->step_x = -1;
 		ray->sidedist_x = (player->pos_x - ray->map_x) * ray->deltadist_x;
 	}
 	else
 	{
-		ray->step_x = 1; // Step right
+		ray->step_x = 1;
 		ray->sidedist_x = (ray->map_x + 1.0 - player->pos_x) * ray->deltadist_x;
 	}
 	if (ray->dir_y < 0)
 	{
-		ray->step_y = -1; // Step up
+		ray->step_y = -1;
 		ray->sidedist_y = (player->pos_y - ray->map_y) * ray->deltadist_y;
 	}
 	else
 	{
-		ray->step_y = 1; // Step down
+		ray->step_y = 1;
 		ray->sidedist_y = (ray->map_y + 1.0 - player->pos_y) * ray->deltadist_y;
 	}
 }
@@ -76,26 +81,23 @@ static void	perform_dda(t_game *game, t_ray *ray)
 	hit = 0;
 	while (hit == 0)
 	{
-		// Jump to next map square, either in x or y direction
 		if (ray->sidedist_x < ray->sidedist_y)
 		{
 			ray->sidedist_x += ray->deltadist_x;
 			ray->map_x += ray->step_x;
-			ray->side = 0; // Hit a vertical wall
+			ray->side = 0;
 		}
 		else
 		{
 			ray->sidedist_y += ray->deltadist_y;
 			ray->map_y += ray->step_y;
-			ray->side = 1; // Hit a horizontal wall
+			ray->side = 1;
 		}
-		// Check if ray is outside map bounds
 		if (ray->map_y < 0.25
 			|| ray->map_x < 0.25
 			|| ray->map_y > game->map.height - 0.25
 			|| ray->map_x > game->map.width - 1.25)
 			break ;
-		// Check if ray has hit a wall (map value > '0')
 		else if (game->map.map[ray->map_y][ray->map_x] > '0')
 			hit = 1;
 	}
@@ -104,29 +106,22 @@ static void	perform_dda(t_game *game, t_ray *ray)
 // Calculate wall distance and line height for drawing
 static void	calculate_line_height(t_ray *ray, t_game *game, t_player *player)
 {
-	// Calculate distance to wall
 	if (ray->side == 0)
 		ray->wall_dist = (ray->sidedist_x - ray->deltadist_x);
 	else
 		ray->wall_dist = (ray->sidedist_y - ray->deltadist_y);
-	
-	// Calculate height of line to draw on screen
 	ray->line_height = (int)(game->win_height / ray->wall_dist);
-
-	// Calculate lowest and highest pixel to fill in current stripe
 	ray->draw_start = -(ray->line_height) / 2 + game->win_height / 2;
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
 	ray->draw_end = ray->line_height / 2 + game->win_height / 2;
 	if (ray->draw_end >= game->win_height)
 		ray->draw_end = game->win_height - 1;
-	
-	// Calculate exact position of wall hit (for texture mapping)
 	if (ray->side == 0)
 		ray->wall_hit = player->pos_y + ray->wall_dist * ray->dir_y;
 	else
 		ray->wall_hit = player->pos_x + ray->wall_dist * ray->dir_x;
-	ray->wall_hit -= floor(ray->wall_hit); // Only the fractional part
+	ray->wall_hit -= floor(ray->wall_hit);
 }
 
 // Main raycasting loop: cast one ray per screen column
@@ -139,12 +134,12 @@ int	raycasting(t_player *player, t_game *game)
 	ray = game->ray;
 	while (x < game->win_width)
 	{
-		init_raycasting_info(x, &ray, player);	// Set up ray for this column
-		set_dda(&ray, player);					// Set up DDA stepping
-		perform_dda(game, &ray);				// Step through map to find wall
-		calculate_line_height(&ray, game, player);	// Compute wall height, etc.
-		update_texture_pixels(game, &game->tex, &ray, x);	// Draw the column
+		init_raycasting_info(x, &ray, player);
+		set_dda(&ray, player);
+		perform_dda(game, &ray);
+		calculate_line_height(&ray, game, player);
+		update_texture_pixels(game, &game->tex, &ray, x);
 		x++;
 	}
-	return (SUCCESS);
+	return (0);
 }

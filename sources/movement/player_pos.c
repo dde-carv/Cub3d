@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player_pos.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dde-carv <dde-carv@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/11 10:25:03 by dde-carv          #+#    #+#             */
+/*   Updated: 2025/06/11 10:25:31 by dde-carv         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static bool	is_valid_pos_wall_collision(t_game *game, double x, double y)
@@ -7,20 +19,8 @@ static bool	is_valid_pos_wall_collision(t_game *game, double x, double y)
 	return (false);
 }
 
-/* static bool	is_valid_pos_in_map(t_game *game, double x, double y)
-{
-	write(1,"lol\n",4);
-	if (x < 0.25 || x >= game->map.width - 1.25)
-		return (false);
-	if (y < 0.25 || y >= game->map.height -0.25)
-		return (false);
-	return (true);
-} */
-
 static bool	is_valid_pos(t_game *game, double x, double y)
 {
-	/* if (is_valid_pos_in_map(game, x, y))
-		return (true); */
 	if (is_valid_pos_wall_collision(game, x, y))
 		return (true);
 	return (false);

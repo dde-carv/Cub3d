@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dde-carv <dde-carv@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/11 10:26:19 by dde-carv          #+#    #+#             */
+/*   Updated: 2025/06/11 13:05:16 by dde-carv         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -26,28 +38,13 @@
 
 # define ERR_MALLOC "Could not allocate memory"
 
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1080
-// # define WIN_WIDTH 960
-// # define WIN_HEIGHT 720
+# define WIN_WIDTH 1280
+# define WIN_HEIGHT 720
 
 # define TEX_SIZE 32
 
-# define MOVESPEED 0.09
-# define ROTSPEED 0.06
-
-// MINIMAP MACROS
-# define MMAP_PIXEL_SIZE 128
-# define MMAP_VIEW_DIST 4
-# define MMAP_COLOR_PLAYER 0x00FF00
-# define MMAP_COLOR_WALL 0x808080
-# define MMAP_COLOR_FLOOR 0xE6E6E6
-# define MMAP_COLOR_SPACE 0x404040
-
-// ERROR MESSAGES
-# define ERR_MLX_START "Could not start mlx"
-# define ERR_MLX_WIN "Could not create mlx window"
-# define ERR_MLX_IMG "Could not create mlx image"
+# define MOVESPEED 0.07
+# define ROTSPEED 0.04
 
 /********************************************************/
 /*						FUNCTIONS						*/
@@ -115,11 +112,11 @@ void			check_elements(t_game *g);
 /* render/render.c */
 int				render(t_game *game);
 
-/* render/render.c */
-void			render_images(t_game *game);
-
 /* render/raycasting.c */
 int				raycasting(t_player *player, t_game *game);
+
+/* render/render.c */
+void			render_raycast(t_game *game);
 
 /* render/texture.c */
 void			init_texture_pixels(t_game *game);
@@ -130,12 +127,6 @@ void			update_texture_pixels(t_game *game, t_tex *tex, \
 
 /* render/image_utils.c */
 void			set_image_pixel(t_img *image, int x, int y, int color);
-
-/* render/minimap_render.c */
-void			render_minimap(t_game *game);
-
-/* render/minimap_image.c */
-void			render_minimap_image(t_game *game, t_minimap *minimap);
 
 /************************* ERROR *************************/
 

@@ -1,12 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   textures.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dde-carv <dde-carv@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/11 10:25:56 by dde-carv          #+#    #+#             */
+/*   Updated: 2025/06/11 10:29:39 by dde-carv         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
+// Initializes the 2D array that will store the
+// color of each pixel for the current frame.
+// This array is used to store the color values
+// for each pixel before rendering to the screen.
 void	init_texture_pixels(t_game *game)
 {
 	int	i;
 
 	if (game->tex.texture_pixels)
 		free_array((void **)game->tex.texture_pixels);
-	game->tex.texture_pixels = ft_calloc(game->win_height + 1, sizeof * game->tex.texture_pixels);
+	game->tex.texture_pixels = ft_calloc(game->win_height + 1, \
+		sizeof * game->tex.texture_pixels);
 	if (!game->tex.texture_pixels)
 		cub_perror(no_mem, game, NULL, 1);
 	i = 0;
@@ -20,6 +37,9 @@ void	init_texture_pixels(t_game *game)
 	}
 }
 
+// Determines which wall texture to use based on the
+// ray's direction and which side was hit.
+// Sets game->tex.index to the correct texture index (NORTH, SOUTH, EAST, WEST).
 static void	get_texture_index(t_game *game, t_ray *ray)
 {
 	if (ray->side == 0)
@@ -38,6 +58,9 @@ static void	get_texture_index(t_game *game, t_ray *ray)
 	}
 }
 
+// Fills in the texture_pixels array for a single vertical
+// stripe (column) of the screen.
+// This function maps the correct texture onto the wall slice hit by the ray.
 void	update_texture_pixels(t_game *game, t_tex *tex, t_ray *ray, int x)
 {
 	int			y;
@@ -45,8 +68,8 @@ void	update_texture_pixels(t_game *game, t_tex *tex, t_ray *ray, int x)
 
 	get_texture_index(game, ray);
 	tex->x = (int)(ray->wall_hit * tex->size);
-	if ((ray->side == 0 && ray->dir_x < 0)
-		|| (ray->side == 1 && ray->dir_y > 0))
+	if ((ray->side == 0 && ray->dir_x < 0) || \
+		(ray->side == 1 && ray->dir_y > 0))
 		tex->x = tex->size - tex->x - 1;
 	tex->step = 1.0 * tex->size / ray->line_height;
 	tex->pos = (ray->draw_start - game->win_height / 2

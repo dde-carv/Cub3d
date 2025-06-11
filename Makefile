@@ -35,8 +35,6 @@ CUB_DIR	=	$(SRC_DIR)main.c \
 			$(SRC_DIR)movement/player_pos.c \
 			$(SRC_DIR)movement/player_rotate.c \
 			$(SRC_DIR)render/image_utils.c \
-			$(SRC_DIR)render/minimap_image.c \
-			$(SRC_DIR)render/minimap_render.c \
 			$(SRC_DIR)render/raycasting.c \
 			$(SRC_DIR)render/render.c \
 			$(SRC_DIR)render/textures.c \

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_read.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dde-carv <dde-carv@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/11 10:24:45 by dde-carv          #+#    #+#             */
+/*   Updated: 2025/06/11 10:35:20 by dde-carv         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 // Checks if the RGB values are within the valid range (0-255).
@@ -34,6 +46,18 @@ static int	verify_tex(t_game *game)
 	if (!game->tex.north || !game->tex.south || \
 		!game->tex.west || !game->tex.east)
 		return (1);
+	cub_perror(inv_tex, game, NULL, ft_strlen(game->tex.north) == 4);
+	cub_perror(inv_tex, game, NULL, ft_strrncmp(game->tex.north, ".xpm", 4));
+	cub_perror(inv_tex, game, NULL, !ft_strrncmp(game->tex.north, "/.xpm", 5));
+	cub_perror(inv_tex, game, NULL, ft_strlen(game->tex.south) == 4);
+	cub_perror(inv_tex, game, NULL, ft_strrncmp(game->tex.south, ".xpm", 4));
+	cub_perror(inv_tex, game, NULL, !ft_strrncmp(game->tex.south, "/.xpm", 5));
+	cub_perror(inv_tex, game, NULL, ft_strlen(game->tex.west) == 4);
+	cub_perror(inv_tex, game, NULL, ft_strrncmp(game->tex.west, ".xpm", 4));
+	cub_perror(inv_tex, game, NULL, !ft_strrncmp(game->tex.west, "/.xpm", 5));
+	cub_perror(inv_tex, game, NULL, ft_strlen(game->tex.east) == 4);
+	cub_perror(inv_tex, game, NULL, ft_strrncmp(game->tex.east, ".xpm", 4));
+	cub_perror(inv_tex, game, NULL, !ft_strrncmp(game->tex.east, "/.xpm", 5));
 	return (0);
 }
 

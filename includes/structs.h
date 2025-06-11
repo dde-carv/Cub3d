@@ -1,14 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   structs.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dde-carv <dde-carv@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/11 10:26:21 by dde-carv          #+#    #+#             */
+/*   Updated: 2025/06/11 10:26:22 by dde-carv         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCTS_H
 # define STRUCTS_H
-
-enum e_output
-{
-	SUCCESS,
-	FAILURE,
-	ERR,
-	BREAK,
-	CONTINUE
-};
 
 enum e_texture_index
 {
@@ -53,36 +56,24 @@ typedef struct s_tex
 	int				*ceiling;
 	unsigned long	hex_floor;
 	unsigned long	hex_ceiling;
-	int				size;
-	int				index;
 	double			step;
 	double			pos;
+	int				size;
+	int				index;
 	int				x;
 	int				y;
 	int				**texture_pixels;
 	int				**textures;
 }	t_tex;
 
-typedef struct s_minimap
-{
-	char	**map;
-	t_img	*img;
-	int		size;
-	int		offset_x;
-	int		offset_y;
-	int		view_dist;
-	int		tile_size;
-}	t_minimap;
-
 typedef struct s_map
 {
-	int			fd;
-	int			line_count;
-	char		*path;
 	char		**map;
+	char		*path;
+	int			fd;
 	int			height;
 	int			width;
-	int			index_start_of_map;
+	int			line_count;
 }	t_map;
 
 typedef struct s_ray
@@ -128,7 +119,6 @@ typedef struct s_game
 	int			win_height;
 	int			win_width;
 	t_map		map;
-	t_img		minimap;
 	t_player	player;
 	t_ray		ray;
 	t_tex		tex;
